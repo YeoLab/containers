@@ -1,0 +1,12 @@
+r-argparse
+r-reticulate
+r-units
+r-gmp
+r-sf
+r-v8
+r-cairo
+r-factoextra
+r-factominer
+gprofiler-official
+r-performanceanalytics
+bioconductor-complexheatmap

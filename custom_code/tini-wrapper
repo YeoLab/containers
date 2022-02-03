@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# And force a PTY on our shell ; braces prevent fork()
+if { true >/dev/tty; } 2>/dev/null; then
+	exec >/dev/tty 2>/dev/tty </dev/tty
+fi
+
+/usr/local/bin/setupgcp.py
+chmod -R go-rwx $HOME/.globusonline
+nohup /opt/gcp/globusconnectpersonal -start &
+
+exec "$@"
+(base) brians-mbp:wrapped_tools brianyee$ cat custom_code/tini-wrapper 
+#!/bin/bash
+
+# workaround for 'tini' to reposition Jupyterhub spawner's
+# insertion of leading arguments "--ip=NNN" and "--port=NNN" to 
+# the notebook command line; interferes with our tini->initenv->jupyterhub-singleuser chain
+
+declare -a preargs
+while (( "$#" )) && [ $1 != '--' ]; do
+  preargs+=($1)
+  shift
+done
+
+exec tini "$@" "${preargs[@]}"
