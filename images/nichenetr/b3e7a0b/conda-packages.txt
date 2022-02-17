@@ -1,0 +1,11 @@
+r-devtools
+r-seurat
+r-tidyverse
+r-circlize
+r-parallelmap
+r-dplyr
+r-mlrmbo
+r-rcolorbrewer
+r-nloptr
+bioconductor-limma
+bioconductor-complexheatmap
