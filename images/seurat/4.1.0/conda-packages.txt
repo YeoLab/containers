@@ -1,0 +1,15 @@
+r-reticulate
+r-units
+r-gmp
+r-sf
+r-v8
+r-ggplot2
+r-dplyr
+r-patchwork
+r-cowplot
+r-scales
+r-reshape2
+r-future
+bioconductor-scater=1.22.0
+r-sctransform=0.3.3
+r-seurat=4.1.0
