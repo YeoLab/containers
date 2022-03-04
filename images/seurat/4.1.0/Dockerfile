@@ -1,10 +1,10 @@
 ################## BASE IMAGE ######################
 
-FROM jupyter/datascience-notebook:r-4.1.2
+FROM jupyter/datascience-notebook:hub-2.0.2
 
 ################## METADATA ######################
 
-LABEL base_image="jupyter/datascience-notebook:r-4.1.2"
+LABEL base_image="jupyter/datascience-notebook:hub-2.0.2"
 LABEL version="1"
 LABEL software="seurat"
 LABEL software.version="4.1.0"
