@@ -9,7 +9,7 @@ LABEL version="1"
 LABEL software="R"
 LABEL software.version="1.0.0"
 LABEL about.summary="Contains essential software packages for analyzing proteomics-type data"
-LABEL about.home="artms.org"
+LABEL about.home="https://hub.docker.com/repository/docker/brianyee/proteomics-essentials"
 LABEL about.documentation=""
 LABEL about.license_file=""
 LABEL about.license="GPL-3"
@@ -35,6 +35,11 @@ RUN mamba install -y -c bioconda -c r -c conda-forge --file /tmp/conda-packages.
 RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org");BiocManager::install(c("artMS"))'
 RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github(repo = "dnusinow/cRomppass", ref = "de872c086a5bb19d5ac46c4a451ef51172cef190")'
+
+RUN cd /opt && git clone https://github.com/kroganlab/mist 
+COPY main.R /opt/mist/main.R
+  
+ENV PATH /opt/mist/:$PATH
 
 USER $NB_UID
 

@@ -1,3 +1,8 @@
+r-reshape2
+r-mess
+r-yaml
+r-rcolorbrewer
+r-pheatmap
 r-argparse
 r-reticulate
 r-units
@@ -10,3 +15,5 @@ r-factominer
 gprofiler-official
 r-performanceanalytics
 bioconductor-complexheatmap
+r-optparse
+bioconductor-msstats
