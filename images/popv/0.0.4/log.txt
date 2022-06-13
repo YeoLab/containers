@@ -1,0 +1,1091 @@
+#1 [internal] load build definition from Dockerfile
+#1 sha256:41755dff87f136d8fa278debd40663a9f1e0b0dddd1e9356984342a6a1368f71
+#1 transferring dockerfile: 2.03kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:de562a72e4c0a6c82a650ee1429e2398585bd39ed7e6c2a5427321b554903419
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/jupyter/datascience-notebook:hub-2.0.2
+#3 sha256:f4f7a1ef79c061e56edb90a18785b6c9dc2965a0ea75f18504d44b84259bc3c4
+#3 ...
+
+#4 [auth] jupyter/datascience-notebook:pull token for registry-1.docker.io
+#4 sha256:8487a070d20c317fe25d508882423a1a4ba174f14fdaf2555d6158b9911706ad
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/jupyter/datascience-notebook:hub-2.0.2
+#3 sha256:f4f7a1ef79c061e56edb90a18785b6c9dc2965a0ea75f18504d44b84259bc3c4
+#3 DONE 2.2s
+
+#5 [1/9] FROM docker.io/jupyter/datascience-notebook:hub-2.0.2@sha256:df37324cbf70cd070ef2a610191a4c427d347e68577795dd6f2d7b9cf65c504e
+#5 sha256:3450b6e521dcdbe003bd311253aeebd3c775a23d90a648448785b26c1590842e
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 sha256:c26438d401b0fae523e43b58fa03a35c230a74e428b5319e15dc71a948d8a26e
+#6 transferring context: 889B 0.0s done
+#6 DONE 0.0s
+
+#8 [3/9] COPY python-packages.txt /tmp/python-packages.txt
+#8 sha256:f46f11d6851c1424cee34927638c4be9e1b8184115bb7b10f61cdd8d6da31f31
+#8 CACHED
+
+#9 [4/9] RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
+#9 sha256:b05ad98516e306cd52dbf28a743fdf34fbac8687e3e81d49c700b785c98989fa
+#9 CACHED
+
+#10 [5/9] RUN conda create -c bioconda -c conda-forge -c anaconda -n popv python=3.7 cudnn=8.2.1.32 cudatoolkit=11.0.221
+#10 sha256:1b374893b36efa7417dc87df938a7f1b5bdbc7d236bfe5890dd4763b56f21837
+#10 CACHED
+
+#7 [2/9] COPY apt-packages.txt /tmp/apt-packages.txt
+#7 sha256:25d81c788ad2216c23ab0bac56aefa7793319f7f542b98ff603c4db5b330c4d6
+#7 CACHED
+
+#11 [6/9] RUN /opt/conda/envs/popv/bin/pip install -r /tmp/python-packages.txt -f https://download.pytorch.org/whl/torch_stable.html
+#11 sha256:f9d9e53cd5d1b8222d180133bd51cc2d4e5d26e9da3b6f00ba88cca8c4cf2a34
+#11 CACHED
+
+#12 [7/9] RUN cd /opt &&   git clone https://github.com/czbiohub/PopV &&   cd /opt/PopV &&   /opt/conda/envs/popv/bin/python setup.py install
+#12 sha256:223a1fc2312d8ece1e76d58d54f78efa601231cf66e5b832ef382d8d1b44b2b1
+#12 1.267 Cloning into 'PopV'...
+#12 13.22 running install
+#12 13.62 running bdist_egg
+#12 13.62 running egg_info
+#12 13.62 creating popv.egg-info
+#12 13.62 writing popv.egg-info/PKG-INFO
+#12 13.62 writing dependency_links to popv.egg-info/dependency_links.txt
+#12 13.62 writing requirements to popv.egg-info/requires.txt
+#12 13.62 writing top-level names to popv.egg-info/top_level.txt
+#12 13.62 writing manifest file 'popv.egg-info/SOURCES.txt'
+#12 13.63 reading manifest file 'popv.egg-info/SOURCES.txt'
+#12 13.63 writing manifest file 'popv.egg-info/SOURCES.txt'
+#12 13.63 installing library code to build/bdist.linux-x86_64/egg
+#12 13.63 running install_lib
+#12 13.63 running build_py
+#12 13.63 creating build
+#12 13.63 creating build/lib
+#12 13.63 creating build/lib/popv
+#12 13.63 copying popv/annotation.py -> build/lib/popv
+#12 13.63 copying popv/__init__.py -> build/lib/popv
+#12 13.63 creating build/bdist.linux-x86_64
+#12 13.63 creating build/bdist.linux-x86_64/egg
+#12 13.63 creating build/bdist.linux-x86_64/egg/popv
+#12 13.63 copying build/lib/popv/annotation.py -> build/bdist.linux-x86_64/egg/popv
+#12 13.63 copying build/lib/popv/__init__.py -> build/bdist.linux-x86_64/egg/popv
+#12 13.64 byte-compiling build/bdist.linux-x86_64/egg/popv/annotation.py to annotation.cpython-37.pyc
+#12 13.65 byte-compiling build/bdist.linux-x86_64/egg/popv/__init__.py to __init__.cpython-37.pyc
+#12 13.66 creating build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 copying popv.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 copying popv.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 copying popv.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 copying popv.egg-info/not-zip-safe -> build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 copying popv.egg-info/requires.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 copying popv.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+#12 13.66 creating dist
+#12 13.66 creating 'dist/popv-0.0.4-py3.7.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+#12 13.67 removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+#12 13.67 Processing popv-0.0.4-py3.7.egg
+#12 13.68 creating /opt/conda/envs/popv/lib/python3.7/site-packages/popv-0.0.4-py3.7.egg
+#12 13.68 Extracting popv-0.0.4-py3.7.egg to /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 13.71 Adding popv 0.0.4 to easy-install.pth file
+#12 13.71 
+#12 13.71 Installed /opt/conda/envs/popv/lib/python3.7/site-packages/popv-0.0.4-py3.7.egg
+#12 13.71 Processing dependencies for popv==0.0.4
+#12 14.23 Searching for wheel>=0.26
+#12 14.23 Reading https://pypi.org/simple/wheel/
+#12 15.18 Downloading https://files.pythonhosted.org/packages/27/d6/003e593296a85fd6ed616ed962795b2f87709c3eee2bca4f6d0fe55c6d00/wheel-0.37.1-py2.py3-none-any.whl#sha256=4bdcd7d840138086126cd09254dc6195fb4fc6f01c050a1d7236f2630db1d22a
+#12 15.59 Best match: wheel 0.37.1
+#12 15.59 Processing wheel-0.37.1-py2.py3-none-any.whl
+#12 15.60 Installing wheel-0.37.1-py2.py3-none-any.whl to /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 15.62 Adding wheel 0.37.1 to easy-install.pth file
+#12 15.62 Installing wheel script to /opt/conda/envs/popv/bin
+#12 15.62 
+#12 15.62 Installed /opt/conda/envs/popv/lib/python3.7/site-packages/wheel-0.37.1-py3.7.egg
+#12 18.03 Searching for typing-extensions==3.7.4.3
+#12 18.03 Best match: typing-extensions 3.7.4.3
+#12 18.03 Adding typing-extensions 3.7.4.3 to easy-install.pth file
+#12 18.03 
+#12 18.03 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.03 Searching for six==1.15.0
+#12 18.04 Best match: six 1.15.0
+#12 18.04 Adding six 1.15.0 to easy-install.pth file
+#12 18.04 
+#12 18.04 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.04 Searching for tqdm==4.64.0
+#12 18.04 Best match: tqdm 4.64.0
+#12 18.04 Adding tqdm 4.64.0 to easy-install.pth file
+#12 18.04 Installing tqdm script to /opt/conda/envs/popv/bin
+#12 18.04 
+#12 18.04 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.06 Searching for huggingface-hub==0.0.12
+#12 18.06 Best match: huggingface-hub 0.0.12
+#12 18.06 Adding huggingface-hub 0.0.12 to easy-install.pth file
+#12 18.06 Installing huggingface-cli script to /opt/conda/envs/popv/bin
+#12 18.06 
+#12 18.06 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.06 Searching for grpcio==1.32.0
+#12 18.06 Best match: grpcio 1.32.0
+#12 18.06 Adding grpcio 1.32.0 to easy-install.pth file
+#12 18.06 
+#12 18.06 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.06 Searching for tensorboard==2.9.1
+#12 18.06 Best match: tensorboard 2.9.1
+#12 18.06 Adding tensorboard 2.9.1 to easy-install.pth file
+#12 18.06 Installing tensorboard script to /opt/conda/envs/popv/bin
+#12 18.06 
+#12 18.06 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.06 Searching for importlib-metadata==1.7.0
+#12 18.06 Best match: importlib-metadata 1.7.0
+#12 18.06 Adding importlib-metadata 1.7.0 to easy-install.pth file
+#12 18.06 
+#12 18.06 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.06 Searching for tensorflow==2.4.4
+#12 18.07 Best match: tensorflow 2.4.4
+#12 18.07 Adding tensorflow 2.4.4 to easy-install.pth file
+#12 18.07 Installing estimator_ckpt_converter script to /opt/conda/envs/popv/bin
+#12 18.07 Installing import_pb_to_tensorboard script to /opt/conda/envs/popv/bin
+#12 18.07 Installing saved_model_cli script to /opt/conda/envs/popv/bin
+#12 18.07 Installing tensorboard script to /opt/conda/envs/popv/bin
+#12 18.07 Installing tf_upgrade_v2 script to /opt/conda/envs/popv/bin
+#12 18.07 Installing tflite_convert script to /opt/conda/envs/popv/bin
+#12 18.07 Installing toco script to /opt/conda/envs/popv/bin
+#12 18.07 Installing toco_from_protos script to /opt/conda/envs/popv/bin
+#12 18.07 
+#12 18.07 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.08 Searching for numpy==1.19.5
+#12 18.08 Best match: numpy 1.19.5
+#12 18.08 Adding numpy 1.19.5 to easy-install.pth file
+#12 18.08 Installing f2py script to /opt/conda/envs/popv/bin
+#12 18.08 Installing f2py3 script to /opt/conda/envs/popv/bin
+#12 18.08 Installing f2py3.7 script to /opt/conda/envs/popv/bin
+#12 18.08 
+#12 18.08 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.08 Searching for OnClass==1.2
+#12 18.08 Best match: OnClass 1.2
+#12 18.09 Adding OnClass 1.2 to easy-install.pth file
+#12 18.09 
+#12 18.09 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.09 Searching for scvi-tools==0.16.3
+#12 18.09 Best match: scvi-tools 0.16.3
+#12 18.09 Adding scvi-tools 0.16.3 to easy-install.pth file
+#12 18.09 
+#12 18.09 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.09 Searching for scanpy==1.8.1
+#12 18.09 Best match: scanpy 1.8.1
+#12 18.09 Adding scanpy 1.8.1 to easy-install.pth file
+#12 18.09 Installing scanpy script to /opt/conda/envs/popv/bin
+#12 18.10 
+#12 18.10 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.10 Searching for scanorama==1.7.1
+#12 18.10 Best match: scanorama 1.7.1
+#12 18.10 Adding scanorama 1.7.1 to easy-install.pth file
+#12 18.10 
+#12 18.10 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.10 Searching for imgkit==1.2.2
+#12 18.11 Best match: imgkit 1.2.2
+#12 18.11 Adding imgkit 1.2.2 to easy-install.pth file
+#12 18.11 
+#12 18.11 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.11 Searching for bbknn==1.5.1
+#12 18.11 Best match: bbknn 1.5.1
+#12 18.11 Adding bbknn 1.5.1 to easy-install.pth file
+#12 18.11 
+#12 18.11 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.12 Searching for obonet==0.3.0
+#12 18.12 Best match: obonet 0.3.0
+#12 18.12 Adding obonet 0.3.0 to easy-install.pth file
+#12 18.12 
+#12 18.12 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.12 Searching for gdown==3.13.0
+#12 18.12 Best match: gdown 3.13.0
+#12 18.12 Adding gdown 3.13.0 to easy-install.pth file
+#12 18.12 Installing gdown script to /opt/conda/envs/popv/bin
+#12 18.13 
+#12 18.13 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.13 Searching for filelock==3.7.1
+#12 18.13 Best match: filelock 3.7.1
+#12 18.13 Adding filelock 3.7.1 to easy-install.pth file
+#12 18.13 
+#12 18.13 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.13 Searching for packaging==21.3
+#12 18.14 Best match: packaging 21.3
+#12 18.14 Adding packaging 21.3 to easy-install.pth file
+#12 18.14 
+#12 18.14 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.14 Searching for requests==2.28.0
+#12 18.14 Best match: requests 2.28.0
+#12 18.14 Adding requests 2.28.0 to easy-install.pth file
+#12 18.14 
+#12 18.14 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.14 Searching for Markdown==3.3.4
+#12 18.15 Best match: Markdown 3.3.4
+#12 18.15 Adding Markdown 3.3.4 to easy-install.pth file
+#12 18.15 Installing markdown_py script to /opt/conda/envs/popv/bin
+#12 18.15 
+#12 18.15 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.15 Searching for google-auth==2.7.0
+#12 18.15 Best match: google-auth 2.7.0
+#12 18.16 Adding google-auth 2.7.0 to easy-install.pth file
+#12 18.16 
+#12 18.16 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.16 Searching for protobuf==3.19.4
+#12 18.16 Best match: protobuf 3.19.4
+#12 18.16 Adding protobuf 3.19.4 to easy-install.pth file
+#12 18.17 
+#12 18.17 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.17 Searching for absl-py==0.15.0
+#12 18.17 Best match: absl-py 0.15.0
+#12 18.17 Adding absl-py 0.15.0 to easy-install.pth file
+#12 18.17 
+#12 18.17 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.17 Searching for google-auth-oauthlib==0.4.6
+#12 18.17 Best match: google-auth-oauthlib 0.4.6
+#12 18.17 Adding google-auth-oauthlib 0.4.6 to easy-install.pth file
+#12 18.18 Installing google-oauthlib-tool script to /opt/conda/envs/popv/bin
+#12 18.18 
+#12 18.18 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.18 Searching for Werkzeug==2.1.2
+#12 18.18 Best match: Werkzeug 2.1.2
+#12 18.18 Adding Werkzeug 2.1.2 to easy-install.pth file
+#12 18.18 
+#12 18.18 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.19 Searching for tensorboard-plugin-wit==1.8.1
+#12 18.19 Best match: tensorboard-plugin-wit 1.8.1
+#12 18.19 Adding tensorboard-plugin-wit 1.8.1 to easy-install.pth file
+#12 18.19 
+#12 18.19 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.19 Searching for tensorboard-data-server==0.6.1
+#12 18.19 Best match: tensorboard-data-server 0.6.1
+#12 18.19 Adding tensorboard-data-server 0.6.1 to easy-install.pth file
+#12 18.19 
+#12 18.19 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.20 Searching for setuptools==59.5.0
+#12 18.20 Best match: setuptools 59.5.0
+#12 18.20 Adding setuptools 59.5.0 to easy-install.pth file
+#12 18.21 
+#12 18.21 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.21 Searching for zipp==3.8.0
+#12 18.21 Best match: zipp 3.8.0
+#12 18.21 Adding zipp 3.8.0 to easy-install.pth file
+#12 18.21 
+#12 18.21 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.21 Searching for tensorflow-estimator==2.4.0
+#12 18.21 Best match: tensorflow-estimator 2.4.0
+#12 18.21 Adding tensorflow-estimator 2.4.0 to easy-install.pth file
+#12 18.22 
+#12 18.22 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.22 Searching for flatbuffers==1.12
+#12 18.22 Best match: flatbuffers 1.12
+#12 18.22 Adding flatbuffers 1.12 to easy-install.pth file
+#12 18.22 
+#12 18.22 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.22 Searching for h5py==2.10.0
+#12 18.22 Best match: h5py 2.10.0
+#12 18.22 Adding h5py 2.10.0 to easy-install.pth file
+#12 18.23 
+#12 18.23 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.23 Searching for google-pasta==0.2.0
+#12 18.23 Best match: google-pasta 0.2.0
+#12 18.23 Adding google-pasta 0.2.0 to easy-install.pth file
+#12 18.23 
+#12 18.23 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.23 Searching for opt-einsum==3.3.0
+#12 18.23 Best match: opt-einsum 3.3.0
+#12 18.23 Adding opt-einsum 3.3.0 to easy-install.pth file
+#12 18.24 
+#12 18.24 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.24 Searching for termcolor==1.1.0
+#12 18.24 Best match: termcolor 1.1.0
+#12 18.24 Adding termcolor 1.1.0 to easy-install.pth file
+#12 18.24 
+#12 18.24 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.24 Searching for wrapt==1.12.1
+#12 18.24 Best match: wrapt 1.12.1
+#12 18.24 Adding wrapt 1.12.1 to easy-install.pth file
+#12 18.24 
+#12 18.24 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.25 Searching for Keras-Preprocessing==1.1.2
+#12 18.25 Best match: Keras-Preprocessing 1.1.2
+#12 18.26 Adding Keras-Preprocessing 1.1.2 to easy-install.pth file
+#12 18.26 
+#12 18.26 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.26 Searching for gast==0.3.3
+#12 18.26 Best match: gast 0.3.3
+#12 18.26 Adding gast 0.3.3 to easy-install.pth file
+#12 18.26 
+#12 18.26 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.26 Searching for astunparse==1.6.3
+#12 18.26 Best match: astunparse 1.6.3
+#12 18.26 Adding astunparse 1.6.3 to easy-install.pth file
+#12 18.27 
+#12 18.27 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.27 Searching for scikit-learn==0.24.0
+#12 18.27 Best match: scikit-learn 0.24.0
+#12 18.27 Adding scikit-learn 0.24.0 to easy-install.pth file
+#12 18.27 
+#12 18.27 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.27 Searching for matplotlib==3.5.2
+#12 18.27 Best match: matplotlib 3.5.2
+#12 18.27 Adding matplotlib 3.5.2 to easy-install.pth file
+#12 18.28 
+#12 18.28 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.28 Searching for anndata==0.7.8
+#12 18.28 Best match: anndata 0.7.8
+#12 18.28 Adding anndata 0.7.8 to easy-install.pth file
+#12 18.28 
+#12 18.28 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for fbpca==1.0
+#12 18.30 Best match: fbpca 1.0
+#12 18.30 Adding fbpca 1.0 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for umap-learn==0.5.3
+#12 18.30 Best match: umap-learn 0.5.3
+#12 18.30 Adding umap-learn 0.5.3 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for sentence-transformers==2.2.0
+#12 18.30 Best match: sentence-transformers 2.2.0
+#12 18.30 Adding sentence-transformers 2.2.0 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for scipy==1.7.3
+#12 18.30 Best match: scipy 1.7.3
+#12 18.30 Adding scipy 1.7.3 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for torchmetrics==0.9.1
+#12 18.30 Best match: torchmetrics 0.9.1
+#12 18.30 Adding torchmetrics 0.9.1 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for pytorch-lightning==1.5.10
+#12 18.30 Best match: pytorch-lightning 1.5.10
+#12 18.30 Adding pytorch-lightning 1.5.10 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for numpyro==0.9.2
+#12 18.30 Best match: numpyro 0.9.2
+#12 18.30 Adding numpyro 0.9.2 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for openpyxl==3.0.10
+#12 18.30 Best match: openpyxl 3.0.10
+#12 18.30 Adding openpyxl 3.0.10 to easy-install.pth file
+#12 18.30 
+#12 18.30 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.30 Searching for optax==0.0.9
+#12 18.30 Best match: optax 0.0.9
+#12 18.30 Adding optax 0.0.9 to easy-install.pth file
+#12 18.31 
+#12 18.31 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.31 Searching for flax==0.4.1
+#12 18.31 Best match: flax 0.4.1
+#12 18.31 Adding flax 0.4.1 to easy-install.pth file
+#12 18.31 
+#12 18.31 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.31 Searching for docrep==0.3.2
+#12 18.31 Best match: docrep 0.3.2
+#12 18.31 Adding docrep 0.3.2 to easy-install.pth file
+#12 18.31 
+#12 18.31 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.31 Searching for rich==12.0.1
+#12 18.31 Best match: rich 12.0.1
+#12 18.31 Adding rich 12.0.1 to easy-install.pth file
+#12 18.32 
+#12 18.32 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.32 Searching for pandas==1.3.5
+#12 18.32 Best match: pandas 1.3.5
+#12 18.32 Adding pandas 1.3.5 to easy-install.pth file
+#12 18.32 
+#12 18.32 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.32 Searching for pyro-ppl==1.8.0
+#12 18.32 Best match: pyro-ppl 1.8.0
+#12 18.32 Adding pyro-ppl 1.8.0 to easy-install.pth file
+#12 18.32 
+#12 18.32 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.32 Searching for torch==1.9.0+cu111
+#12 18.32 Best match: torch 1.9.0+cu111
+#12 18.32 Adding torch 1.9.0+cu111 to easy-install.pth file
+#12 18.32 Installing convert-caffe2-to-onnx script to /opt/conda/envs/popv/bin
+#12 18.32 Installing convert-onnx-to-caffe2 script to /opt/conda/envs/popv/bin
+#12 18.32 
+#12 18.32 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.33 Searching for ipywidgets==7.7.0
+#12 18.33 Best match: ipywidgets 7.7.0
+#12 18.33 Adding ipywidgets 7.7.0 to easy-install.pth file
+#12 18.33 
+#12 18.33 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.33 Searching for jax==0.3.13
+#12 18.33 Best match: jax 0.3.13
+#12 18.33 Adding jax 0.3.13 to easy-install.pth file
+#12 18.33 
+#12 18.33 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.33 Searching for statsmodels==0.13.2
+#12 18.33 Best match: statsmodels 0.13.2
+#12 18.33 Adding statsmodels 0.13.2 to easy-install.pth file
+#12 18.33 
+#12 18.33 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.33 Searching for networkx==2.6.3
+#12 18.33 Best match: networkx 2.6.3
+#12 18.33 Adding networkx 2.6.3 to easy-install.pth file
+#12 18.34 
+#12 18.34 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.34 Searching for natsort==8.1.0
+#12 18.34 Best match: natsort 8.1.0
+#12 18.34 Adding natsort 8.1.0 to easy-install.pth file
+#12 18.34 Installing natsort script to /opt/conda/envs/popv/bin
+#12 18.35 
+#12 18.35 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.35 Searching for seaborn==0.11.2
+#12 18.35 Best match: seaborn 0.11.2
+#12 18.35 Adding seaborn 0.11.2 to easy-install.pth file
+#12 18.35 
+#12 18.35 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.35 Searching for tables==3.7.0
+#12 18.35 Best match: tables 3.7.0
+#12 18.35 Adding tables 3.7.0 to easy-install.pth file
+#12 18.35 Installing pt2to3 script to /opt/conda/envs/popv/bin
+#12 18.35 Installing ptdump script to /opt/conda/envs/popv/bin
+#12 18.35 Installing ptrepack script to /opt/conda/envs/popv/bin
+#12 18.35 Installing pttree script to /opt/conda/envs/popv/bin
+#12 18.36 
+#12 18.36 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.36 Searching for patsy==0.5.2
+#12 18.36 Best match: patsy 0.5.2
+#12 18.36 Adding patsy 0.5.2 to easy-install.pth file
+#12 18.36 
+#12 18.36 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.36 Searching for sinfo==0.3.4
+#12 18.36 Best match: sinfo 0.3.4
+#12 18.36 Adding sinfo 0.3.4 to easy-install.pth file
+#12 18.36 
+#12 18.36 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.36 Searching for numba==0.55.2
+#12 18.36 Best match: numba 0.55.2
+#12 18.36 Adding numba 0.55.2 to easy-install.pth file
+#12 18.36 
+#12 18.36 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.37 Searching for joblib==1.1.0
+#12 18.37 Best match: joblib 1.1.0
+#12 18.37 Adding joblib 1.1.0 to easy-install.pth file
+#12 18.37 
+#12 18.37 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.37 Searching for geosketch==1.2
+#12 18.37 Best match: geosketch 1.2
+#12 18.37 Adding geosketch 1.2 to easy-install.pth file
+#12 18.37 
+#12 18.37 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.37 Searching for intervaltree==2.1.0
+#12 18.37 Best match: intervaltree 2.1.0
+#12 18.37 Adding intervaltree 2.1.0 to easy-install.pth file
+#12 18.37 
+#12 18.37 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.37 Searching for annoy==1.17.0
+#12 18.37 Best match: annoy 1.17.0
+#12 18.37 Adding annoy 1.17.0 to easy-install.pth file
+#12 18.37 
+#12 18.37 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.37 Searching for pynndescent==0.5.7
+#12 18.37 Best match: pynndescent 0.5.7
+#12 18.37 Adding pynndescent 0.5.7 to easy-install.pth file
+#12 18.37 
+#12 18.37 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.37 Searching for Cython==0.29.30
+#12 18.37 Best match: Cython 0.29.30
+#12 18.37 Adding Cython 0.29.30 to easy-install.pth file
+#12 18.37 Installing cygdb script to /opt/conda/envs/popv/bin
+#12 18.38 Installing cython script to /opt/conda/envs/popv/bin
+#12 18.38 Installing cythonize script to /opt/conda/envs/popv/bin
+#12 18.38 
+#12 18.38 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.38 Searching for pyparsing==3.0.9
+#12 18.38 Best match: pyparsing 3.0.9
+#12 18.38 Adding pyparsing 3.0.9 to easy-install.pth file
+#12 18.38 
+#12 18.38 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.38 Searching for idna==3.3
+#12 18.38 Best match: idna 3.3
+#12 18.38 Adding idna 3.3 to easy-install.pth file
+#12 18.39 
+#12 18.39 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.39 Searching for charset-normalizer==2.0.12
+#12 18.39 Best match: charset-normalizer 2.0.12
+#12 18.39 Adding charset-normalizer 2.0.12 to easy-install.pth file
+#12 18.39 Installing normalizer script to /opt/conda/envs/popv/bin
+#12 18.39 
+#12 18.39 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.39 Searching for urllib3==1.26.9
+#12 18.39 Best match: urllib3 1.26.9
+#12 18.39 Adding urllib3 1.26.9 to easy-install.pth file
+#12 18.40 
+#12 18.40 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.40 Searching for certifi==2022.5.18.1
+#12 18.40 Best match: certifi 2022.5.18.1
+#12 18.40 Adding certifi 2022.5.18.1 to easy-install.pth file
+#12 18.40 
+#12 18.40 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.40 Searching for cachetools==5.2.0
+#12 18.40 Best match: cachetools 5.2.0
+#12 18.40 Adding cachetools 5.2.0 to easy-install.pth file
+#12 18.40 
+#12 18.40 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.40 Searching for pyasn1-modules==0.2.8
+#12 18.40 Best match: pyasn1-modules 0.2.8
+#12 18.40 Adding pyasn1-modules 0.2.8 to easy-install.pth file
+#12 18.40 
+#12 18.40 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.40 Searching for rsa==4.8
+#12 18.40 Best match: rsa 4.8
+#12 18.40 Adding rsa 4.8 to easy-install.pth file
+#12 18.40 Installing pyrsa-decrypt script to /opt/conda/envs/popv/bin
+#12 18.40 Installing pyrsa-encrypt script to /opt/conda/envs/popv/bin
+#12 18.40 Installing pyrsa-keygen script to /opt/conda/envs/popv/bin
+#12 18.40 Installing pyrsa-priv2pub script to /opt/conda/envs/popv/bin
+#12 18.40 Installing pyrsa-sign script to /opt/conda/envs/popv/bin
+#12 18.40 Installing pyrsa-verify script to /opt/conda/envs/popv/bin
+#12 18.40 
+#12 18.40 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.40 Searching for requests-oauthlib==1.3.1
+#12 18.40 Best match: requests-oauthlib 1.3.1
+#12 18.40 Adding requests-oauthlib 1.3.1 to easy-install.pth file
+#12 18.40 
+#12 18.40 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.40 Searching for threadpoolctl==3.1.0
+#12 18.40 Best match: threadpoolctl 3.1.0
+#12 18.40 Adding threadpoolctl 3.1.0 to easy-install.pth file
+#12 18.41 
+#12 18.41 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.41 Searching for python-dateutil==2.8.2
+#12 18.41 Best match: python-dateutil 2.8.2
+#12 18.41 Adding python-dateutil 2.8.2 to easy-install.pth file
+#12 18.42 
+#12 18.42 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.42 Searching for cycler==0.11.0
+#12 18.42 Best match: cycler 0.11.0
+#12 18.42 Adding cycler 0.11.0 to easy-install.pth file
+#12 18.42 
+#12 18.42 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.42 Searching for kiwisolver==1.4.2
+#12 18.42 Best match: kiwisolver 1.4.2
+#12 18.42 Adding kiwisolver 1.4.2 to easy-install.pth file
+#12 18.42 
+#12 18.42 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.42 Searching for fonttools==4.33.3
+#12 18.42 Best match: fonttools 4.33.3
+#12 18.42 Adding fonttools 4.33.3 to easy-install.pth file
+#12 18.42 Installing fonttools script to /opt/conda/envs/popv/bin
+#12 18.42 Installing pyftmerge script to /opt/conda/envs/popv/bin
+#12 18.42 Installing pyftsubset script to /opt/conda/envs/popv/bin
+#12 18.42 Installing ttx script to /opt/conda/envs/popv/bin
+#12 18.42 
+#12 18.42 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.42 Searching for Pillow==9.1.1
+#12 18.42 Best match: Pillow 9.1.1
+#12 18.42 Adding Pillow 9.1.1 to easy-install.pth file
+#12 18.42 
+#12 18.42 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.42 Searching for xlrd==1.2.0
+#12 18.42 Best match: xlrd 1.2.0
+#12 18.42 Adding xlrd 1.2.0 to easy-install.pth file
+#12 18.42 
+#12 18.42 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.42 Searching for torchvision==0.10.0+cu111
+#12 18.42 Best match: torchvision 0.10.0+cu111
+#12 18.42 Adding torchvision 0.10.0+cu111 to easy-install.pth file
+#12 18.43 
+#12 18.43 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.43 Searching for transformers==4.10.3
+#12 18.43 Best match: transformers 4.10.3
+#12 18.43 Adding transformers 4.10.3 to easy-install.pth file
+#12 18.43 Installing transformers-cli script to /opt/conda/envs/popv/bin
+#12 18.43 
+#12 18.43 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.43 Searching for nltk==3.7
+#12 18.43 Best match: nltk 3.7
+#12 18.43 Adding nltk 3.7 to easy-install.pth file
+#12 18.43 Installing nltk script to /opt/conda/envs/popv/bin
+#12 18.43 
+#12 18.43 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.44 Searching for sentencepiece==0.1.96
+#12 18.44 Best match: sentencepiece 0.1.96
+#12 18.44 Adding sentencepiece 0.1.96 to easy-install.pth file
+#12 18.44 
+#12 18.44 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.44 Searching for fsspec==2022.5.0
+#12 18.44 Best match: fsspec 2022.5.0
+#12 18.44 Adding fsspec 2022.5.0 to easy-install.pth file
+#12 18.44 
+#12 18.44 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.44 Searching for pyDeprecate==0.3.1
+#12 18.44 Best match: pyDeprecate 0.3.1
+#12 18.44 Adding pyDeprecate 0.3.1 to easy-install.pth file
+#12 18.44 
+#12 18.44 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.45 Searching for PyYAML==6.0
+#12 18.45 Best match: PyYAML 6.0
+#12 18.45 Adding PyYAML 6.0 to easy-install.pth file
+#12 18.45 
+#12 18.45 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.45 Searching for future==0.18.2
+#12 18.45 Best match: future 0.18.2
+#12 18.45 Adding future 0.18.2 to easy-install.pth file
+#12 18.45 Installing futurize script to /opt/conda/envs/popv/bin
+#12 18.46 Installing pasteurize script to /opt/conda/envs/popv/bin
+#12 18.46 
+#12 18.46 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.46 Searching for multipledispatch==0.6.0
+#12 18.46 Best match: multipledispatch 0.6.0
+#12 18.46 Adding multipledispatch 0.6.0 to easy-install.pth file
+#12 18.46 
+#12 18.46 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.46 Searching for jaxlib==0.3.10
+#12 18.46 Best match: jaxlib 0.3.10
+#12 18.46 Adding jaxlib 0.3.10 to easy-install.pth file
+#12 18.46 
+#12 18.46 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.46 Searching for et-xmlfile==1.1.0
+#12 18.46 Best match: et-xmlfile 1.1.0
+#12 18.46 Adding et-xmlfile 1.1.0 to easy-install.pth file
+#12 18.47 
+#12 18.47 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.47 Searching for chex==0.1.3
+#12 18.47 Best match: chex 0.1.3
+#12 18.47 Adding chex 0.1.3 to easy-install.pth file
+#12 18.47 
+#12 18.47 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.47 Searching for msgpack==1.0.4
+#12 18.47 Best match: msgpack 1.0.4
+#12 18.47 Adding msgpack 1.0.4 to easy-install.pth file
+#12 18.47 
+#12 18.47 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.47 Searching for commonmark==0.9.1
+#12 18.47 Best match: commonmark 0.9.1
+#12 18.47 Adding commonmark 0.9.1 to easy-install.pth file
+#12 18.47 Installing cmark script to /opt/conda/envs/popv/bin
+#12 18.47 
+#12 18.47 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.48 Searching for Pygments==2.12.0
+#12 18.48 Best match: Pygments 2.12.0
+#12 18.48 Adding Pygments 2.12.0 to easy-install.pth file
+#12 18.48 Installing pygmentize script to /opt/conda/envs/popv/bin
+#12 18.48 
+#12 18.48 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.48 Searching for pytz==2022.1
+#12 18.48 Best match: pytz 2022.1
+#12 18.48 Adding pytz 2022.1 to easy-install.pth file
+#12 18.48 
+#12 18.48 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.48 Searching for pyro-api==0.1.2
+#12 18.48 Best match: pyro-api 0.1.2
+#12 18.48 Adding pyro-api 0.1.2 to easy-install.pth file
+#12 18.49 
+#12 18.49 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.49 Searching for traitlets==5.2.2.post1
+#12 18.49 Best match: traitlets 5.2.2.post1
+#12 18.49 Adding traitlets 5.2.2.post1 to easy-install.pth file
+#12 18.49 
+#12 18.49 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.49 Searching for ipython==7.34.0
+#12 18.49 Best match: ipython 7.34.0
+#12 18.49 Adding ipython 7.34.0 to easy-install.pth file
+#12 18.49 Installing iptest script to /opt/conda/envs/popv/bin
+#12 18.49 Installing iptest3 script to /opt/conda/envs/popv/bin
+#12 18.49 Installing ipython script to /opt/conda/envs/popv/bin
+#12 18.49 Installing ipython3 script to /opt/conda/envs/popv/bin
+#12 18.49 
+#12 18.49 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.49 Searching for jupyterlab-widgets==1.1.0
+#12 18.49 Best match: jupyterlab-widgets 1.1.0
+#12 18.49 Adding jupyterlab-widgets 1.1.0 to easy-install.pth file
+#12 18.50 
+#12 18.50 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.50 Searching for nbformat==5.4.0
+#12 18.50 Best match: nbformat 5.4.0
+#12 18.50 Adding nbformat 5.4.0 to easy-install.pth file
+#12 18.50 Installing jupyter-trust script to /opt/conda/envs/popv/bin
+#12 18.50 
+#12 18.50 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.50 Searching for ipython-genutils==0.2.0
+#12 18.50 Best match: ipython-genutils 0.2.0
+#12 18.50 Adding ipython-genutils 0.2.0 to easy-install.pth file
+#12 18.50 
+#12 18.50 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.51 Searching for ipykernel==6.13.1
+#12 18.51 Best match: ipykernel 6.13.1
+#12 18.51 Adding ipykernel 6.13.1 to easy-install.pth file
+#12 18.51 
+#12 18.51 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.51 Searching for widgetsnbextension==3.6.0
+#12 18.51 Best match: widgetsnbextension 3.6.0
+#12 18.51 Adding widgetsnbextension 3.6.0 to easy-install.pth file
+#12 18.51 
+#12 18.51 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.51 Searching for numexpr==2.8.1
+#12 18.51 Best match: numexpr 2.8.1
+#12 18.51 Adding numexpr 2.8.1 to easy-install.pth file
+#12 18.51 
+#12 18.51 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.52 Searching for stdlib-list==0.8.0
+#12 18.52 Best match: stdlib-list 0.8.0
+#12 18.52 Adding stdlib-list 0.8.0 to easy-install.pth file
+#12 18.52 
+#12 18.52 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.52 Searching for llvmlite==0.38.1
+#12 18.52 Best match: llvmlite 0.38.1
+#12 18.52 Adding llvmlite 0.38.1 to easy-install.pth file
+#12 18.52 
+#12 18.52 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.52 Searching for sortedcontainers==2.4.0
+#12 18.52 Best match: sortedcontainers 2.4.0
+#12 18.52 Adding sortedcontainers 2.4.0 to easy-install.pth file
+#12 18.52 
+#12 18.52 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.52 Searching for PySocks==1.7.1
+#12 18.52 Best match: PySocks 1.7.1
+#12 18.52 Adding PySocks 1.7.1 to easy-install.pth file
+#12 18.53 
+#12 18.53 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.53 Searching for pyasn1==0.4.8
+#12 18.53 Best match: pyasn1 0.4.8
+#12 18.53 Adding pyasn1 0.4.8 to easy-install.pth file
+#12 18.53 
+#12 18.53 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.53 Searching for oauthlib==3.2.0
+#12 18.53 Best match: oauthlib 3.2.0
+#12 18.53 Adding oauthlib 3.2.0 to easy-install.pth file
+#12 18.53 
+#12 18.53 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.53 Searching for sacremoses==0.0.53
+#12 18.53 Best match: sacremoses 0.0.53
+#12 18.53 Adding sacremoses 0.0.53 to easy-install.pth file
+#12 18.54 Installing sacremoses script to /opt/conda/envs/popv/bin
+#12 18.54 
+#12 18.54 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.54 Searching for regex==2022.6.2
+#12 18.54 Best match: regex 2022.6.2
+#12 18.54 Adding regex 2022.6.2 to easy-install.pth file
+#12 18.55 
+#12 18.55 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.55 Searching for tokenizers==0.10.3
+#12 18.55 Best match: tokenizers 0.10.3
+#12 18.55 Adding tokenizers 0.10.3 to easy-install.pth file
+#12 18.55 
+#12 18.55 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.55 Searching for click==8.1.3
+#12 18.55 Best match: click 8.1.3
+#12 18.55 Adding click 8.1.3 to easy-install.pth file
+#12 18.55 
+#12 18.55 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.55 Searching for aiohttp==3.8.1
+#12 18.56 Best match: aiohttp 3.8.1
+#12 18.56 Adding aiohttp 3.8.1 to easy-install.pth file
+#12 18.56 
+#12 18.56 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.56 Searching for toolz==0.11.2
+#12 18.56 Best match: toolz 0.11.2
+#12 18.56 Adding toolz 0.11.2 to easy-install.pth file
+#12 18.56 
+#12 18.56 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.56 Searching for dm-tree==0.1.7
+#12 18.56 Best match: dm-tree 0.1.7
+#12 18.56 Adding dm-tree 0.1.7 to easy-install.pth file
+#12 18.56 
+#12 18.56 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.57 Searching for prompt-toolkit==3.0.29
+#12 18.57 Best match: prompt-toolkit 3.0.29
+#12 18.57 Adding prompt-toolkit 3.0.29 to easy-install.pth file
+#12 18.57 
+#12 18.57 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.57 Searching for jedi==0.18.1
+#12 18.57 Best match: jedi 0.18.1
+#12 18.57 Adding jedi 0.18.1 to easy-install.pth file
+#12 18.57 
+#12 18.57 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.58 Searching for pickleshare==0.7.5
+#12 18.58 Best match: pickleshare 0.7.5
+#12 18.58 Adding pickleshare 0.7.5 to easy-install.pth file
+#12 18.58 
+#12 18.58 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.58 Searching for matplotlib-inline==0.1.3
+#12 18.58 Best match: matplotlib-inline 0.1.3
+#12 18.58 Adding matplotlib-inline 0.1.3 to easy-install.pth file
+#12 18.59 
+#12 18.59 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.59 Searching for backcall==0.2.0
+#12 18.59 Best match: backcall 0.2.0
+#12 18.59 Adding backcall 0.2.0 to easy-install.pth file
+#12 18.59 
+#12 18.59 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.59 Searching for decorator==5.1.1
+#12 18.59 Best match: decorator 5.1.1
+#12 18.59 Adding decorator 5.1.1 to easy-install.pth file
+#12 18.59 
+#12 18.59 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.59 Searching for pexpect==4.8.0
+#12 18.59 Best match: pexpect 4.8.0
+#12 18.59 Adding pexpect 4.8.0 to easy-install.pth file
+#12 18.59 
+#12 18.59 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.60 Searching for jsonschema==4.6.0
+#12 18.60 Best match: jsonschema 4.6.0
+#12 18.60 Adding jsonschema 4.6.0 to easy-install.pth file
+#12 18.60 Installing jsonschema script to /opt/conda/envs/popv/bin
+#12 18.60 
+#12 18.60 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.60 Searching for fastjsonschema==2.15.3
+#12 18.60 Best match: fastjsonschema 2.15.3
+#12 18.60 Adding fastjsonschema 2.15.3 to easy-install.pth file
+#12 18.60 
+#12 18.60 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.61 Searching for jupyter-core==4.10.0
+#12 18.61 Best match: jupyter-core 4.10.0
+#12 18.61 Adding jupyter-core 4.10.0 to easy-install.pth file
+#12 18.61 Installing jupyter script to /opt/conda/envs/popv/bin
+#12 18.61 Installing jupyter-migrate script to /opt/conda/envs/popv/bin
+#12 18.61 Installing jupyter-troubleshoot script to /opt/conda/envs/popv/bin
+#12 18.61 
+#12 18.61 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.61 Searching for psutil==5.9.1
+#12 18.61 Best match: psutil 5.9.1
+#12 18.61 Adding psutil 5.9.1 to easy-install.pth file
+#12 18.62 
+#12 18.62 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.62 Searching for jupyter-client==7.3.4
+#12 18.62 Best match: jupyter-client 7.3.4
+#12 18.62 Adding jupyter-client 7.3.4 to easy-install.pth file
+#12 18.62 Installing jupyter-kernel script to /opt/conda/envs/popv/bin
+#12 18.62 Installing jupyter-kernelspec script to /opt/conda/envs/popv/bin
+#12 18.62 Installing jupyter-run script to /opt/conda/envs/popv/bin
+#12 18.62 
+#12 18.62 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.63 Searching for debugpy==1.6.0
+#12 18.63 Best match: debugpy 1.6.0
+#12 18.63 Adding debugpy 1.6.0 to easy-install.pth file
+#12 18.63 
+#12 18.63 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.63 Searching for nest-asyncio==1.5.5
+#12 18.63 Best match: nest-asyncio 1.5.5
+#12 18.63 Adding nest-asyncio 1.5.5 to easy-install.pth file
+#12 18.63 
+#12 18.63 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.64 Searching for tornado==6.1
+#12 18.64 Best match: tornado 6.1
+#12 18.64 Adding tornado 6.1 to easy-install.pth file
+#12 18.64 
+#12 18.64 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.64 Searching for notebook==6.4.12
+#12 18.64 Best match: notebook 6.4.12
+#12 18.64 Adding notebook 6.4.12 to easy-install.pth file
+#12 18.64 Installing jupyter-bundlerextension script to /opt/conda/envs/popv/bin
+#12 18.64 Installing jupyter-nbextension script to /opt/conda/envs/popv/bin
+#12 18.64 Installing jupyter-notebook script to /opt/conda/envs/popv/bin
+#12 18.64 Installing jupyter-serverextension script to /opt/conda/envs/popv/bin
+#12 18.64 
+#12 18.64 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.65 Searching for async-timeout==4.0.2
+#12 18.65 Best match: async-timeout 4.0.2
+#12 18.65 Adding async-timeout 4.0.2 to easy-install.pth file
+#12 18.65 
+#12 18.65 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.65 Searching for frozenlist==1.3.0
+#12 18.65 Best match: frozenlist 1.3.0
+#12 18.65 Adding frozenlist 1.3.0 to easy-install.pth file
+#12 18.66 
+#12 18.66 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.66 Searching for attrs==21.4.0
+#12 18.66 Best match: attrs 21.4.0
+#12 18.66 Adding attrs 21.4.0 to easy-install.pth file
+#12 18.66 
+#12 18.66 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.66 Searching for yarl==1.7.2
+#12 18.66 Best match: yarl 1.7.2
+#12 18.66 Adding yarl 1.7.2 to easy-install.pth file
+#12 18.67 
+#12 18.67 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.67 Searching for aiosignal==1.2.0
+#12 18.67 Best match: aiosignal 1.2.0
+#12 18.67 Adding aiosignal 1.2.0 to easy-install.pth file
+#12 18.67 
+#12 18.67 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.67 Searching for asynctest==0.13.0
+#12 18.68 Best match: asynctest 0.13.0
+#12 18.68 Adding asynctest 0.13.0 to easy-install.pth file
+#12 18.68 
+#12 18.68 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.68 Searching for multidict==6.0.2
+#12 18.68 Best match: multidict 6.0.2
+#12 18.68 Adding multidict 6.0.2 to easy-install.pth file
+#12 18.68 
+#12 18.68 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.68 Searching for wcwidth==0.2.5
+#12 18.68 Best match: wcwidth 0.2.5
+#12 18.68 Adding wcwidth 0.2.5 to easy-install.pth file
+#12 18.69 
+#12 18.69 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.69 Searching for parso==0.8.3
+#12 18.69 Best match: parso 0.8.3
+#12 18.69 Adding parso 0.8.3 to easy-install.pth file
+#12 18.69 
+#12 18.69 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.69 Searching for ptyprocess==0.7.0
+#12 18.69 Best match: ptyprocess 0.7.0
+#12 18.69 Adding ptyprocess 0.7.0 to easy-install.pth file
+#12 18.70 
+#12 18.70 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.70 Searching for pyrsistent==0.18.1
+#12 18.70 Best match: pyrsistent 0.18.1
+#12 18.70 Adding pyrsistent 0.18.1 to easy-install.pth file
+#12 18.70 
+#12 18.70 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.70 Searching for importlib-resources==5.7.1
+#12 18.70 Best match: importlib-resources 5.7.1
+#12 18.70 Adding importlib-resources 5.7.1 to easy-install.pth file
+#12 18.70 
+#12 18.70 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.71 Searching for entrypoints==0.4
+#12 18.71 Best match: entrypoints 0.4
+#12 18.71 Adding entrypoints 0.4 to easy-install.pth file
+#12 18.71 
+#12 18.71 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.71 Searching for pyzmq==23.1.0
+#12 18.71 Best match: pyzmq 23.1.0
+#12 18.71 Adding pyzmq 23.1.0 to easy-install.pth file
+#12 18.71 
+#12 18.71 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.71 Searching for Jinja2==3.1.2
+#12 18.72 Best match: Jinja2 3.1.2
+#12 18.72 Adding Jinja2 3.1.2 to easy-install.pth file
+#12 18.72 
+#12 18.72 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.72 Searching for terminado==0.15.0
+#12 18.72 Best match: terminado 0.15.0
+#12 18.72 Adding terminado 0.15.0 to easy-install.pth file
+#12 18.72 
+#12 18.72 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.72 Searching for argon2-cffi==21.3.0
+#12 18.73 Best match: argon2-cffi 21.3.0
+#12 18.73 Adding argon2-cffi 21.3.0 to easy-install.pth file
+#12 18.73 
+#12 18.73 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.73 Searching for nbconvert==6.5.0
+#12 18.73 Best match: nbconvert 6.5.0
+#12 18.73 Adding nbconvert 6.5.0 to easy-install.pth file
+#12 18.73 Installing jupyter-dejavu script to /opt/conda/envs/popv/bin
+#12 18.73 Installing jupyter-nbconvert script to /opt/conda/envs/popv/bin
+#12 18.73 
+#12 18.73 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.74 Searching for prometheus-client==0.14.1
+#12 18.74 Best match: prometheus-client 0.14.1
+#12 18.74 Adding prometheus-client 0.14.1 to easy-install.pth file
+#12 18.74 
+#12 18.74 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.74 Searching for Send2Trash==1.8.0
+#12 18.74 Best match: Send2Trash 1.8.0
+#12 18.74 Adding Send2Trash 1.8.0 to easy-install.pth file
+#12 18.74 Installing send2trash script to /opt/conda/envs/popv/bin
+#12 18.74 
+#12 18.74 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.75 Searching for MarkupSafe==2.1.1
+#12 18.75 Best match: MarkupSafe 2.1.1
+#12 18.75 Adding MarkupSafe 2.1.1 to easy-install.pth file
+#12 18.75 
+#12 18.75 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.75 Searching for argon2-cffi-bindings==21.2.0
+#12 18.75 Best match: argon2-cffi-bindings 21.2.0
+#12 18.75 Adding argon2-cffi-bindings 21.2.0 to easy-install.pth file
+#12 18.76 
+#12 18.76 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.76 Searching for bleach==5.0.0
+#12 18.76 Best match: bleach 5.0.0
+#12 18.76 Adding bleach 5.0.0 to easy-install.pth file
+#12 18.76 
+#12 18.76 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.76 Searching for jupyterlab-pygments==0.2.2
+#12 18.76 Best match: jupyterlab-pygments 0.2.2
+#12 18.76 Adding jupyterlab-pygments 0.2.2 to easy-install.pth file
+#12 18.77 
+#12 18.77 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.77 Searching for pandocfilters==1.5.0
+#12 18.77 Best match: pandocfilters 1.5.0
+#12 18.77 Adding pandocfilters 1.5.0 to easy-install.pth file
+#12 18.77 
+#12 18.77 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.78 Searching for nbclient==0.6.4
+#12 18.78 Best match: nbclient 0.6.4
+#12 18.78 Adding nbclient 0.6.4 to easy-install.pth file
+#12 18.78 Installing jupyter-execute script to /opt/conda/envs/popv/bin
+#12 18.78 
+#12 18.78 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.78 Searching for beautifulsoup4==4.11.1
+#12 18.78 Best match: beautifulsoup4 4.11.1
+#12 18.78 Adding beautifulsoup4 4.11.1 to easy-install.pth file
+#12 18.78 
+#12 18.78 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.79 Searching for defusedxml==0.7.1
+#12 18.79 Best match: defusedxml 0.7.1
+#12 18.79 Adding defusedxml 0.7.1 to easy-install.pth file
+#12 18.79 
+#12 18.79 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.79 Searching for tinycss2==1.1.1
+#12 18.79 Best match: tinycss2 1.1.1
+#12 18.79 Adding tinycss2 1.1.1 to easy-install.pth file
+#12 18.79 
+#12 18.79 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.80 Searching for mistune==0.8.4
+#12 18.80 Best match: mistune 0.8.4
+#12 18.80 Adding mistune 0.8.4 to easy-install.pth file
+#12 18.80 
+#12 18.80 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.80 Searching for cffi==1.15.0
+#12 18.80 Best match: cffi 1.15.0
+#12 18.80 Adding cffi 1.15.0 to easy-install.pth file
+#12 18.80 
+#12 18.80 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.81 Searching for webencodings==0.5.1
+#12 18.81 Best match: webencodings 0.5.1
+#12 18.81 Adding webencodings 0.5.1 to easy-install.pth file
+#12 18.81 
+#12 18.81 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.81 Searching for soupsieve==2.3.2.post1
+#12 18.81 Best match: soupsieve 2.3.2.post1
+#12 18.81 Adding soupsieve 2.3.2.post1 to easy-install.pth file
+#12 18.82 
+#12 18.82 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.82 Searching for pycparser==2.21
+#12 18.82 Best match: pycparser 2.21
+#12 18.82 Adding pycparser 2.21 to easy-install.pth file
+#12 18.82 
+#12 18.82 Using /opt/conda/envs/popv/lib/python3.7/site-packages
+#12 18.82 Finished processing dependencies for popv==0.0.4
+#12 18.82 /opt/conda/envs/popv/lib/python3.7/site-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+#12 18.82   setuptools.SetuptoolsDeprecationWarning,
+#12 18.82 /opt/conda/envs/popv/lib/python3.7/site-packages/setuptools/command/easy_install.py:159: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+#12 18.82   EasyInstallDeprecationWarning,
+#12 18.82 /opt/conda/envs/popv/lib/python3.7/site-packages/pkg_resources/__init__.py:119: PkgResourcesDeprecationWarning:  is an invalid version and will not be supported in a future release
+#12 18.82   PkgResourcesDeprecationWarning,
+#12 DONE 18.9s
+
+#13 [8/9] RUN "/opt/conda/envs/popv/bin/python" -m ipykernel install --name="popv" &&     fix-permissions "/opt/conda" &&     fix-permissions "/home/jovyan"
+#13 sha256:c38dbd690e0ebfd378a0faf230b8ee7f4cdf6eb728ff2bf8fc5fe963d0dcb69f
+#13 3.219 Installed kernelspec popv in /usr/local/share/jupyter/kernels/popv
+#13 545.2 chgrp: cannot dereference '/opt/conda/pkgs/zlib-1.2.12-h166bdaf_0/lib/libz.so': No such file or directory
+#13 647.3 chgrp: cannot dereference '/opt/conda/pkgs/_openmp_mutex-4.5-2_gnu/lib/libgomp.so.1': No such file or directory
+#13 669.8 chgrp: cannot dereference '/opt/conda/pkgs/python-3.7.12-hf930737_100_cpython/compiler_compat/ld': No such file or directory
+#13 DONE 740.0s
+
+#14 [9/9] RUN echo "conda activate popv" >> "/home/jovyan/.bashrc"
+#14 sha256:90d1840a71b37acb0b97db8bdbba70d4b6360a84b98d828c577f20f3e999bfdb
+#14 DONE 2.0s
+
+#15 exporting to image
+#15 sha256:e8c613e07b0b7ff33893b694f7759a10d42e180f2b4dc349fb57dc6b71dcab00
+#15 exporting layers
+#15 exporting layers 295.4s done
+#15 writing image sha256:2b8e0dc3d7ad06b55e59d3feb029699299395937a43f9ca61fa8b7e8b7c6da7a
+#15 writing image sha256:2b8e0dc3d7ad06b55e59d3feb029699299395937a43f9ca61fa8b7e8b7c6da7a 0.0s done
+#15 DONE 295.5s
