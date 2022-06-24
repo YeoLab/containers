@@ -1,0 +1,6 @@
+cudnn==8.2.1.32
+cudatoolkit==11.0.221
+python-igraph
+scikit-misc
+hdf5
+mkl-service==2.3
