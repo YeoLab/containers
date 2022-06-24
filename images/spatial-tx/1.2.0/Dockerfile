@@ -36,11 +36,12 @@ RUN pip install -r /tmp/python-packages.txt
 
 RUN cd /opt && \
   wget https://github.com/kharchenkolab/Baysor/releases/download/v0.5.1/baysor_ubuntu-latest_x64_build.zip && \
-  unzip /opt/baysor_ubuntu-latest_x64_build.zip 
+  unzip /opt/baysor_ubuntu-latest_x64_build.zip && \
+  rm /opt/baysor_ubuntu-latest_x64_build.zip
 
-RUN cd /opt && \
+RUN cd /tmp && \
   git clone https://github.com/LucasESBS/scoreCT && \
-  cd /opt/scoreCT && \
+  cd /tmp/scoreCT && \
   python setup.py install
 
 RUN mkdir -p /content/sctoolkit/sctoolkit/ && touch __init__.py
