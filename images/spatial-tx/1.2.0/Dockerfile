@@ -1,10 +1,10 @@
 ################## BASE IMAGE ######################
 
-FROM jupyter/datascience-notebook:hub-2.3.1
+FROM jupyter/datascience-notebook:hub-2.2.2
 
 ################## METADATA ######################
 
-LABEL base_image="jupyter/datascience-notebook:hub-2.3.1"
+LABEL base_image="jupyter/datascience-notebook:hub-2.2.2"
 LABEL version="1"
 LABEL software="R, Python3"
 LABEL software.version="1.2.0"
