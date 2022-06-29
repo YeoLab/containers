@@ -42,7 +42,7 @@ RUN cd /tmp && \
   cd /tmp/scoreCT && \
   python setup.py install
 
-RUN mkdir -p /content/sctoolkit/sctoolkit/ && touch __init__.py
+RUN mkdir -p /content/sctoolkit/sctoolkit/ && touch /content/sctoolkit/sctoolkit/__init__.py
 
 COPY proportions.py /content/sctoolkit/sctoolkit/proportions.py
 
