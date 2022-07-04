@@ -25,3 +25,4 @@ colorcet
 mofax
 mizani
 rpy2
+matplotlib-venn
