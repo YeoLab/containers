@@ -47,6 +47,7 @@ RUN mkdir -p /content/sctoolkit/sctoolkit/ && touch /content/sctoolkit/sctoolkit
 COPY proportions.py /content/sctoolkit/sctoolkit/proportions.py
 
 ENV NUMBA_CACHE_DIR=/home/jovyan
+ENV PATH=/opt/Baysor/bin:$PATH
 
 USER $NB_UID
 

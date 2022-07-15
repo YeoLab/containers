@@ -1,3 +1,7 @@
+r-matrix
+r-seurat
+r-gt
+r-igraph
 r-devtools
 r-readr
 r-pals
@@ -27,3 +31,4 @@ scikit-misc
 hdf5
 git
 mkl-service
+r-seurat

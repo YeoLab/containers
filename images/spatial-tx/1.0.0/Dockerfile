@@ -5,7 +5,7 @@ FROM jupyter/datascience-notebook:hub-2.0.2
 ################## METADATA ######################
 
 LABEL base_image="jupyter/datascience-notebook:hub-2.0.2"
-LABEL version="1"
+LABEL version="3"
 LABEL software="R, Python3"
 LABEL software.version="1.0.0"
 LABEL about.summary="Container with some spatial transcriptomics + single cell software installed"
@@ -46,6 +46,7 @@ RUN pip install git+https://github.com/BayraktarLab/cell2location.git#egg=cell2l
 
 RUN Rscript -e 'devtools::install_github("https://github.com/MarcElosua/SPOTlight", ref = "87534b92311aec0f254297dcb9478e4b63e9ee81")'
 RUN Rscript -e 'devtools::install_github("xzhoulab/SPARK")'
+RUN Rscript -e 'devtools::install_github("satijalab/seurat-data")'
 
 COPY dmcable-spacexr-ead0e5b.tar.gz /opt/dmcable-spacexr-ead0e5b.tar.gz
 RUN cd /opt && \
