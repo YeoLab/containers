@@ -1,0 +1,5 @@
+g++
+cmake
+software-properties-common
+libgsl-dev
+zlib1g-dev
