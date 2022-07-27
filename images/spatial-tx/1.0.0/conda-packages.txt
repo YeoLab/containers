@@ -1,3 +1,6 @@
+r-gt
+r-igraph
+r-seurat
 r-devtools
 r-readr
 r-pals
