@@ -1,0 +1,7 @@
+seaborn
+scikit-learn
+statsmodels
+numba
+pytables
+python-igraph
+leidenalg
