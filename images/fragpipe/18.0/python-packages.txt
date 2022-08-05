@@ -1,0 +1,10 @@
+numpy
+scipy
+scikit-learn
+statsmodels
+pandas>=1.1.0
+biopython
+pyopenms
+matplotlib
+seaborn
+easypqp
