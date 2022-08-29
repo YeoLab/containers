@@ -1,0 +1,2 @@
+cutadapt=2.8
+fastx_toolkit=0.0.14

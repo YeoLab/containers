@@ -1,0 +1,4 @@
+build-essential
+emacs-nox
+software-properties-common
+
