@@ -45,6 +45,8 @@ RUN "/opt/conda/envs/${conda_env}/bin/python" -m ipykernel install --name="${con
 
 RUN chmod +x /opt/PRIESSTESS/PRIESSTESS
 RUN chmod +x /opt/PRIESSTESS/PRIESSTESS_scan
+RUN chmod +x /opt/PRIESSTESS/bin/utils/*
+RUN chmod +x /opt/PRIESSTESS/bin/*
 
 USER $NB_UID
 
