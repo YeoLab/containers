@@ -1,0 +1,8 @@
+libpci-dev
+mesa-common-dev
+build-essential
+libfontconfig1
+libglu1-mesa-dev
+software-properties-common
+qt5-default
+libxcb-util-dev

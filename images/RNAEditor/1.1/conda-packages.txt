@@ -1,0 +1,10 @@
+numpy
+pysam
+qt
+bwa
+bedtools
+blat
+gatk=3.5
+pyqt
+matplotlib
+pyqtwebengine
