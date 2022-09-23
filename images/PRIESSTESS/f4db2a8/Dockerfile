@@ -35,7 +35,7 @@ RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
 RUN cd /opt && \
   git clone https://github.com/kaitlin309/PRIESSTESS && \
   cd /opt/PRIESSTESS && \
-  git checkout 4de5ced180f3dabcbcd802e0f150f41c5c7d37b2
+  git checkout f4db2a85fe5f9a7338856719b2e1ad32016237f9
 
 # create Python kernel and link it to jupyter
 RUN "/opt/conda/envs/${conda_env}/bin/python" -m ipykernel install --name="${conda_env}" && \
@@ -43,9 +43,11 @@ RUN "/opt/conda/envs/${conda_env}/bin/python" -m ipykernel install --name="${con
     fix-permissions "/home/${NB_USER}" && \
     fix-permissions "/opt/PRIESSTESS"
 
+RUN chmod +x /opt/PRIESSTESS/PRIESSTESS
+
+# search PRIESSTESS_arguments.txt instead of arguments.txt, which doesnt exist
 COPY PRIESSTESS_scan /opt/PRIESSTESS/PRIESSTESS_scan
 
-RUN chmod +x /opt/PRIESSTESS/PRIESSTESS
 RUN chmod +x /opt/PRIESSTESS/PRIESSTESS_scan
 RUN chmod +x /opt/PRIESSTESS/bin/utils/*
 RUN chmod +x /opt/PRIESSTESS/bin/*
