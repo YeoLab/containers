@@ -27,6 +27,7 @@ USER root
 RUN cd /opt && \
   git clone https://github.com/uw-ipd/RoseTTAFold2NA.git && \
   cd /opt/RoseTTAFold2NA && \
+  git checkout 0f697067bf41b3d4e918caa3f65803a5c6047733 && \
   conda env create -f RF2na-linux.yml
 
 RUN cd /opt/RoseTTAFold2NA/SE3Transformer && \
@@ -34,15 +35,9 @@ RUN cd /opt/RoseTTAFold2NA/SE3Transformer && \
 
 SHELL ["conda","run","-n","RF2NA","/bin/bash","-c"]
 
-# create Python kernel and link it to jupyter
-RUN "/opt/conda/envs/RF2NA/bin/python" -m ipykernel install --name="RF2NA" && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}" && \
-    fix-permissions "/opt/RoseTTAFold2NA"
-
 USER $NB_UID
 
 ENV PATH /opt/conda/envs/RF2NA/bin/:$PATH
-RUN echo "conda activate RF2NA" >> "${HOME}/.bashrc"
+# RUN echo "conda activate RF2NA" >> "${HOME}/.bashrc"
 
 
