@@ -41,5 +41,5 @@ SHELL ["conda","run","-n","SQANTI3.env","/bin/bash","-c"]
 USER $NB_UID
 
 ENV PATH /opt/conda/envs/SQANTI3.env/bin/:$PATH
-ENV PYTHONPATH /opt/cDNA_Cupcake-29.0.0/sequence:$PYTHONPATH
+# ENV PYTHONPATH /opt/cDNA_Cupcake-29.0.0/sequence:$PYTHONPATH
 
