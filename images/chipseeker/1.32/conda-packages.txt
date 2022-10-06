@@ -1,0 +1,6 @@
+bioconductor-chipseeker
+bioconductor-txdb.hsapiens.ucsc.hg38.knowngene
+bioconductor-ensdb.hsapiens.v75
+bioconductor-clusterprofiler
+bioconductor-annotationdbi
+bioconductor-org.hs.eg.db
