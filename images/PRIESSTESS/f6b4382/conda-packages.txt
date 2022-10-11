@@ -4,6 +4,7 @@ scikit-optimize=0.8.1
 scikit-learn=0.23.2
 ipykernel
 r-ggplot2
-r-grid
+r-gridextra
+r-gridgraphics
 r-ggseqlogo
 r-viridis
