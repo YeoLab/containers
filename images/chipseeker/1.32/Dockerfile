@@ -30,5 +30,7 @@ RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 # Install additional R packages from conda-forge using mamba
 RUN mamba install -y -c bioconda -c r -c conda-forge -c anaconda --file /tmp/conda-packages.txt
 
+RUN Rscript -e 'IRkernel::installspec(name = "r-chipseeker-1.32", displayname = "R (ChIPseeker-1.32)", user = FALSE)'
+
 USER $NB_UID
 
