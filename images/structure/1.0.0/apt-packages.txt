@@ -1,0 +1,6 @@
+build-essential
+mesa-common-dev
+libglu1-mesa-dev
+libfontconfig1
+qt5-default
+libarchive-dev

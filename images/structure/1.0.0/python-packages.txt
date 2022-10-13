@@ -1,0 +1,10 @@
+ViennaRNA
+biopython
+matplotlib
+numpy
+pandas
+networkx
+appdirs
+PyQt5
+pyqt5-tools
+beautifulsoup4
