@@ -1,3 +1,5 @@
 bioconductor-ihw
 r-tidyverse
 bioconductor-dewseq=1.8
+pysam
+htseq
