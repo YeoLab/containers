@@ -2,5 +2,15 @@ build-essential
 mesa-common-dev
 libglu1-mesa-dev
 libfontconfig1
-qt5-default
 libarchive-dev
+qtbase5-dev
+qtchooser
+qt5-qmake
+qtbase5-dev-tools
+libglew-dev
+libglm-dev
+libpng-dev
+zlib1g-dev
+libnetcdf-dev
+libglew-dev
+

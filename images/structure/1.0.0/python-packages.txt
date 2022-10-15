@@ -8,3 +8,5 @@ appdirs
 PyQt5
 pyqt5-tools
 beautifulsoup4
+pmw
+
