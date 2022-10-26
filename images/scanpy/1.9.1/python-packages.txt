@@ -1,3 +1,4 @@
 scanpy==1.9.1
 decoupler
 gseapy
+scrublet

@@ -1,6 +1,6 @@
 ################## BASE IMAGE ######################
 
-FROM jupyter/datascience-notebook:hub-2.0.2
+FROM jupyter/datascience-notebook:hub-2.2.2
 
 ################## METADATA ######################
 
