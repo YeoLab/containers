@@ -1,0 +1,9 @@
+harfbuzz
+r-ggplot2
+r-pheatmap
+r-dplyr
+r-knitr
+r-seurat
+r-pkgdown
+r-ragg
+r-devtools
