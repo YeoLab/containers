@@ -1,0 +1,17 @@
+dask
+distributed
+omero-py
+pillow
+wxpython
+tqdm
+imglyb>=2.0.1
+jgo>=1.0.3
+jpype1>=1.3.0
+labeling>=0.1.12
+matplotlib
+numpy
+scyjava>=1.6.0
+xarray
+openjdk>=8
+pyimagej
+cellprofiler

@@ -1,0 +1,5 @@
+ome-zarr
+dask-image
+geojson
+python-dotenv
+stardist==0.8.1
