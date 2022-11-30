@@ -18,3 +18,5 @@ tqdm
 six
 typing-extensions
 scikit-learn
+jupyter
+jupyterlab
