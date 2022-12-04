@@ -13,6 +13,7 @@ fastx_toolkit
 fastqc
 gffutils
 graphviz
+h5py=3.7
 hisat2
 homer
 idr
@@ -42,6 +43,7 @@ rsem
 sailfish
 salmon
 samtools
+scanpy
 scikit-learn
 scipy
 seaborn
