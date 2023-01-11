@@ -5,3 +5,4 @@ numba
 pytables
 python-igraph
 leidenalg
+memory_profiler
