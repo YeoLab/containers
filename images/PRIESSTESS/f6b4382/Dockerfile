@@ -35,7 +35,7 @@ RUN mamba install -y -c bioconda -c r -c conda-forge --file /tmp/conda-packages.
 RUN cd /opt && \
   git clone https://github.com/kaitlin309/PRIESSTESS && \
   cd /opt/PRIESSTESS && \
-  git checkout f4db2a85fe5f9a7338856719b2e1ad32016237f9
+  git checkout f6b438282be9951e0bb6c3fcb704f07cccae8c98
 
 # create Python kernel and link it to jupyter
 RUN fix-permissions "${CONDA_DIR}" && \

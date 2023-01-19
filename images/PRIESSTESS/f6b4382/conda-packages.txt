@@ -8,3 +8,4 @@ r-gridextra
 r-gridgraphics
 r-ggseqlogo
 r-viridis
+numpy=1.23
