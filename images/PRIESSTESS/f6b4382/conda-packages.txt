@@ -1,7 +1,7 @@
 viennarna
 meme=5.3.0
 scikit-optimize=0.8.1
-scikit-learn=0.23.2
+scikit-learn=0.22
 ipykernel
 r-ggplot2
 r-gridextra
