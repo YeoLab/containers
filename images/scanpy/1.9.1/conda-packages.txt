@@ -6,3 +6,5 @@ pytables
 python-igraph
 leidenalg
 memory_profiler
+openpyxl
+xlsxwriter
