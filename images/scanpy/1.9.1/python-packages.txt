@@ -3,3 +3,5 @@ decoupler
 gseapy
 scrublet
 scikit-misc
+matplotlib-venn
+harmonypy
