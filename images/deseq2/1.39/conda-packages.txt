@@ -1,3 +1,4 @@
+r-ggfortify
 r-curl
 r-reticulate
 r-units
