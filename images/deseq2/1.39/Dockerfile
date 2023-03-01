@@ -26,7 +26,7 @@ RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
 
 RUN Rscript -e 'install.packages("devtools", repos = "https://cran.us.r-project.org")'
-RUN Rscript -e 'install.packages("RCurl", repos = "https://cran.us.r-project.org")'
+# RUN Rscript -e 'install.packages("RCurl", repos = "https://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github("mikelove/deseq2", ref = "98d2ab74df97e2e97943fa5c996d292ef2aba180")'
 
 #USER $NB_UID

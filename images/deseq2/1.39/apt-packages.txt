@@ -17,3 +17,4 @@ libgmp3-dev
 libharfbuzz-dev
 libfribidi-dev
 libcurl4-openssl-dev
+pkg-config
