@@ -1,3 +1,5 @@
+bioconductor-dexseq
+r-r.utils
 r-ragg
 r-reticulate
 r-units
