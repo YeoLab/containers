@@ -1,0 +1,11 @@
+blas=*.*=openblas
+seaborn
+scikit-learn
+statsmodels
+numba
+pytables
+python-igraph
+leidenalg
+memory_profiler
+openpyxl
+xlsxwriter
