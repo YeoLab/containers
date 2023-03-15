@@ -33,5 +33,8 @@ RUN pip install -r /tmp/python-packages.txt
 RUN pip install pyg_lib torch_scatter torch_sparse -f https://data.pyg.org/whl/torch-1.13.1+cu117.html
 RUN pip install torch-geometric
 RUN pip install torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-1.13.1+cu117.html
+RUN pip install "jax[cuda11_cudnn82]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+#RUN pip install jax[cuda]>=0.4
 
 USER $NB_UID
