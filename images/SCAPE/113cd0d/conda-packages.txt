@@ -1,3 +1,4 @@
+r-argparse
 bioconductor-dexseq
 r-r.utils
 r-ragg
@@ -26,3 +27,5 @@ bioconductor-annotatr
 bioconductor-annotationdbi
 bioconductor-dexseq
 bioconductor-genomicfeatures
+bioconductor-org.hs.eg.db
+bioconductor-org.mm.eg.db
