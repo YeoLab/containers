@@ -27,6 +27,7 @@ bioconductor-ensdb.rnorvegicus.v79
 bioconductor-org.hs.eg.db
 bioconductor-org.mm.eg.db
 bioconductor-org.rn.eg.db
+bioconductor-dep
 r-ragg
 r-plotly
 r-ggfortify
