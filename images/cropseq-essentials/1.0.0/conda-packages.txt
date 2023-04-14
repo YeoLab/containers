@@ -11,7 +11,7 @@ r-matrixstats
 r-plyr
 r-reshape2
 r-scales
-r-monocle3
+r-monocle
 r-tidyr
 r-viridis
 r-readr
