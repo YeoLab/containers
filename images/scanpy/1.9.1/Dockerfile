@@ -30,4 +30,7 @@ RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
 # Install additional Python packages
 RUN pip install -r /tmp/python-packages.txt
 
+# RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
+RUN Rscript -e 'devtools::install_github("navinlabcode/copykat")'
+
 USER $NB_UID

@@ -6,3 +6,4 @@ scrublet
 scikit-misc
 matplotlib-venn
 harmonypy
+infercnvpy
