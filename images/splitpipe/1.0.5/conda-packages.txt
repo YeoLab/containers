@@ -1,0 +1,7 @@
+fastqc
+pandas
+pigz
+samtools
+scipy
+star
+unzip
