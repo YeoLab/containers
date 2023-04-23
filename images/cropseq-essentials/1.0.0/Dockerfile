@@ -25,10 +25,12 @@ COPY apt-packages.txt /tmp/apt-packages.txt
 # Update image, install additional distro packages
 RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 
-COPY conda-packages.txt /tmp/conda-packages.txt
+COPY conda-packages-python.txt /tmp/conda-packages-python.txt
+COPY conda-packages-R.txt /tmp/conda-packages-R.txt
 
 # Install additional R packages from conda-forge using mamba
-RUN mamba install -y -c hailinwei -c bioconda -c conda-forge --file /tmp/conda-packages.txt
+RUN mamba install -y -c hailinwei -c bioconda -c conda-forge --file /tmp/conda-packages-python.txt
+RUN mamba install -y -c hailinwei -c bioconda -c conda-forge --file /tmp/conda-packages-R.txt
 
 RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github(repo = "katsevich-lab/sceptre", ref = "a3ef7b080675c195ca62928caa177783de91daf7")'

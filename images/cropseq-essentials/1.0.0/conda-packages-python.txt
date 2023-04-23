@@ -1,0 +1,14 @@
+samtools
+numpy
+scipy
+pandas
+scikit-bio
+pysam
+progressbar2
+scanpy
+seaborn
+umap-learn
+tqdm
+networkx
+olefile
+scree

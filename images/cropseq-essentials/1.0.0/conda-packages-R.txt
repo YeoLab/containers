@@ -11,7 +11,6 @@ r-matrixstats
 r-plyr
 r-reshape2
 r-scales
-r-monocle
 r-tidyr
 r-viridis
 r-readr
@@ -21,17 +20,4 @@ r-ddrtree
 r-seurat=4.3.0
 bioconductor-biocparallel
 bioconductor-piano
-samtools
-numpy
-scipy
-pandas
-scikit-bio
-pysam
-progressbar2
-scanpy
-seaborn
-umap-learn
-tqdm
-networkx
-olefile
-scree
+bioconductor-monocle
