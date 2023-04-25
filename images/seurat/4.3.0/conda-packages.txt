@@ -16,3 +16,10 @@ r-seurat=4.3.0
 bioconductor-genomeinfodbdata=1.2.7
 bioconductor-singlecellexperiment
 r-ragg
+bioconductor-clusterprofiler
+bioconductor-org.hs.eg.db
+bioconductor-sparsematrixstats
+bioconductor-biomart
+r-lme4
+r-raster
+r-terra
