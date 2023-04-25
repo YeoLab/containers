@@ -1,0 +1,10 @@
+torch
+scanpy==1.9.3
+decoupler
+gseapy
+scrublet
+scikit-misc
+matplotlib-venn
+harmonypy
+infercnvpy
+llvmlite==0.38.0
