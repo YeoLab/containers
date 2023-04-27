@@ -4,7 +4,7 @@ FROM jupyter/datascience-notebook:hub-2.2.2
 
 ################## METADATA ######################
 
-LABEL base_image="jupyter/datascience-notebook:hub-2.0.2"
+LABEL base_image="jupyter/datascience-notebook:hub-2.2.2"
 LABEL version="1"
 LABEL software="scarches"
 LABEL software.version="0.5.7"
