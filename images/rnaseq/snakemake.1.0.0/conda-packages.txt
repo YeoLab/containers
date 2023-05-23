@@ -10,7 +10,6 @@ r-readr
 r-hash
 fastqc
 trim-galore
-multiqc
 salmon
 hisat2
 samtools
@@ -25,3 +24,5 @@ bioconductor-enhancedvolcano
 bioconductor-biomart
 bioconductor-genomeinfodbdata<1.2.9
 pyyaml
+multiqc
+pygments>2.14
