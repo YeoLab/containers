@@ -30,5 +30,8 @@ RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 # Install additional conda packages from conda-forge using mamba
 RUN mamba install -y -c bioconda -c r -c conda-forge --file /tmp/conda-packages.txt
 
+RUN Rscript -e 'install.packages("plotscale", repos = "http://cran.us.r-project.org")'
+RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org"); BiocManager::install("GenomeInfoDbData")'
+
 USER $NB_UID
 
