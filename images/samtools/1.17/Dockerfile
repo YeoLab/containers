@@ -22,11 +22,25 @@ COPY apt-packages.txt /tmp/apt-packages.txt
 # Update image, install additional distro packages
 RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 
-RUN yum update -y && yum install -y wget
-RUN cd /opt/ && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-RUN cd /opt && bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
-ENV PATH /opt/conda/bin:$PATH
-RUN conda update conda;
-RUN conda install "samtools>=1.17"
-CMD ["samtools"]
+RUN cd /opt && \
+  wget https://github.com/samtools/samtools/releases/download/1.17/samtools-1.17.tar.bz2 && \
+  tar -xjf /opt/samtools-1.17.tar.bz2 && \
+  cd /opt/samtools-1.17 && \
+  ./configure --prefix=/opt/samtools-1.17-build && \
+  make && \
+  make install && \
+  rm -rf /opt/samtools-1.17 && \
+  rm /opt/samtools-1.17.tar.bz2
+
+RUN cd /opt && \
+  wget https://github.com/samtools/bcftools/releases/download/1.17/bcftools-1.17.tar.bz2 && \
+  tar -xjf /opt/bcftools-1.17.tar.bz2 && \
+  cd /opt/bcftools-1.17 && \
+  ./configure --prefix=/opt/bcftools-1.17-build && \
+  make && \
+  make install && \
+  rm -rf /opt/bcftools-1.17 && \
+  rm /opt/bcftools-1.17.tar.bz2
+
+ENV PATH /opt/samtools-1.17-build/bin:/opt/bcftools-1.17-build/bin:$PATH
 USER $NB_UID
