@@ -1,3 +1,4 @@
+r-irkernel
 r-curl
 r-reticulate
 r-units
