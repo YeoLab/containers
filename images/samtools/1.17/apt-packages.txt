@@ -1,0 +1,8 @@
+libncurses5-dev
+libncursesw5-dev
+zlib1g
+zlib1g-dev
+libbz2-dev
+liblzma-dev
+libcurl4-openssl-dev
+curl
