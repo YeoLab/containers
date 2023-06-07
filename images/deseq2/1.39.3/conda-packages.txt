@@ -21,6 +21,7 @@ bioconductor-vsn
 bioconductor-pasilla
 bioconductor-genomeinfodbdata
 bioconductor-tximport
+bioconductor-ensdb.hsapiens.v86
 bioconductor-ensdb.hsapiens.v79
 bioconductor-ensdb.mmusculus.v79
 bioconductor-ensdb.rnorvegicus.v79
