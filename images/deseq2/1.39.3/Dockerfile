@@ -24,7 +24,6 @@ RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 
 # Install additional R packages from conda-forge using mamba
 RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
-RUN mamba install -c bioconda bioconductor-ensdb.hsapiens.v79
 
 RUN Rscript -e 'install.packages("devtools", repos = "https://cran.us.r-project.org")'
 # RUN Rscript -e 'install.packages("RCurl", repos = "https://cran.us.r-project.org")'
