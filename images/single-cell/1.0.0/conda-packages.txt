@@ -1,0 +1,2 @@
+hdf5
+mkl-service==2.3
