@@ -1,0 +1,51 @@
+(base) shuhaoxu@Shuhaos-MBP 1.0.0 % docker build -t visual/1.0.0 .
+[+] Building 2289.1s (10/10) FINISHED                                                                  
+ => [internal] load .dockerignore                                                                 0.0s
+ => => transferring context: 2B                                                                   0.0s
+ => [internal] load build definition from Dockerfile                                              0.0s
+ => => transferring dockerfile: 858B                                                              0.0s
+ => [internal] load metadata for docker.io/jupyter/datascience-notebook:hub-2.0.2                 1.1s
+ => [auth] jupyter/datascience-notebook:pull token for registry-1.docker.io                       0.0s
+ => [internal] load build context                                                                 0.0s
+ => => transferring context: 496B                                                                 0.0s
+ => CACHED [1/5] FROM docker.io/jupyter/datascience-notebook:hub-2.0.2@sha256:df37324cbf70cd070e  0.0s
+ => [2/5] COPY apt-packages.txt /tmp/apt-packages.txt                                             0.0s
+ => [3/5] RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt                456.4s
+ => [4/5] RUN conda update conda;                                                               673.7s
+ => ERROR [5/5] RUN conda install -y -c bioconda ensdb.hsapiens.v79                            1157.8s 
+------                                                                                                 
+ > [5/5] RUN conda install -y -c bioconda ensdb.hsapiens.v79:                                          
+#0 11.78 Collecting package metadata (current_repodata.json): ...working... done                       
+#0 200.5 Solving environment: ...working... unsuccessful initial attempt using frozen solve. Retrying with flexible solve.                                                                                    
+#0 200.6 Collecting package metadata (repodata.json): ...working... done                               
+#0 1107.1 Solving environment: ...working... unsuccessful initial attempt using frozen solve. Retrying with flexible solve.
+#0 1107.1 
+#0 1107.1 PackagesNotFoundError: The following packages are not available from current channels:
+#0 1107.1 
+#0 1107.1   - ensdb.hsapiens.v79
+#0 1107.1 
+#0 1107.1 Current channels:
+#0 1107.1 
+#0 1107.1   - https://conda.anaconda.org/bioconda/linux-64
+#0 1107.1   - https://conda.anaconda.org/bioconda/noarch
+#0 1107.1   - https://conda.anaconda.org/conda-forge/linux-64
+#0 1107.1   - https://conda.anaconda.org/conda-forge/noarch
+#0 1107.1 
+#0 1107.1 To search for alternate channels that may provide the conda package you're
+#0 1107.1 looking for, navigate to
+#0 1107.1 
+#0 1107.1     https://anaconda.org
+#0 1107.1 
+#0 1107.1 and use the search bar at the top of the page.
+#0 1107.1 
+#0 1107.1 
+------
+Dockerfile:21
+--------------------
+  19 |     RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
+  20 |     RUN conda update conda;
+  21 | >>> RUN conda install -y -c bioconda ensdb.hsapiens.v79
+  22 |     
+  23 |     USER $NB_UID
+--------------------
+ERROR: failed to solve: process "/bin/bash -o pipefail -c conda install -y -c bioconda ensdb.hsapiens.v79" did not complete successfully: exit code: 1
