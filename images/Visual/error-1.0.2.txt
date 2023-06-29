@@ -1,0 +1,65 @@
+(base) shuhaoxu@Shuhaos-MacBook-Pro 1.0.2 % docker build -t visual/1.0.2 .
+[+] Building 435.3s (9/9) FINISHED                                              
+ => [internal] load build definition from Dockerfile                       0.0s
+ => => transferring dockerfile: 834B                                       0.0s
+ => [internal] load .dockerignore                                          0.0s
+ => => transferring context: 2B                                            0.0s
+ => [internal] load metadata for docker.io/jupyter/datascience-notebook:h  1.5s
+ => [auth] jupyter/datascience-notebook:pull token for registry-1.docker.  0.0s
+ => [internal] load build context                                          0.0s
+ => => transferring context: 496B                                          0.0s
+ => CACHED [1/4] FROM docker.io/jupyter/datascience-notebook:hub-2.0.2@sh  0.0s
+ => [2/4] COPY apt-packages.txt /tmp/apt-packages.txt                      0.0s
+ => [3/4] RUN apt-get update && xargs apt-get install -y < /tmp/apt-pac  312.5s
+ => ERROR [4/4] RUN mamba install -y -c bioconda ensdb.hsapiens.v79      121.1s
+------                                                                          
+ > [4/4] RUN mamba install -y -c bioconda ensdb.hsapiens.v79:                   
+#0 119.5                                                                        
+#0 119.5                   __    __    __    __                                 
+#0 119.5                  /  \  /  \  /  \  /  \                                
+#0 119.5                 /    \/    \/    \/    \                               
+#0 119.5 ███████████████/  /██/  /██/  /██/  /████████████████████████
+#0 119.5               /  / \   / \   / \   / \  \____
+#0 119.5              /  /   \_/   \_/   \_/   \    o \__,
+#0 119.5             / _/                       \_____/  `
+#0 119.5             |/
+#0 119.5         ███╗   ███╗ █████╗ ███╗   ███╗██████╗  █████╗
+#0 119.5         ████╗ ████║██╔══██╗████╗ ████║██╔══██╗██╔══██╗
+#0 119.5         ██╔████╔██║███████║██╔████╔██║██████╔╝███████║
+#0 119.5         ██║╚██╔╝██║██╔══██║██║╚██╔╝██║██╔══██╗██╔══██║
+#0 119.5         ██║ ╚═╝ ██║██║  ██║██║ ╚═╝ ██║██████╔╝██║  ██║
+#0 119.5         ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═════╝ ╚═╝  ╚═╝
+#0 119.5 
+#0 119.5         mamba (0.19.1) supported by @QuantStack
+#0 119.5 
+#0 119.5         GitHub:  https://github.com/mamba-org/mamba
+#0 119.5         Twitter: https://twitter.com/QuantStack
+#0 119.5 
+#0 119.5 █████████████████████████████████████████████████████████████
+#0 119.5 
+#0 119.5 
+#0 119.5 Looking for: ['ensdb.hsapiens.v79']
+#0 119.5 
+#0 119.5 
+#0 119.5 Pinned packages:
+#0 119.5   - python 3.9.*
+#0 119.5   - python 3.9.7
+#0 119.5 
+#0 119.5 
+#0 119.5 Encountered problems while solving:
+#0 119.5   - nothing provides requested ensdb.hsapiens.v79
+#0 119.5 
+#0 119.5 bioconda/noarch           
+#0 119.5 bioconda/linux-64         
+#0 119.5 conda-forge/noarch        
+#0 119.5 conda-forge/linux-64      
+------
+Dockerfile:20
+--------------------
+  18 |     # Update image, install additional distro packages
+  19 |     RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
+  20 | >>> RUN mamba install -y -c bioconda ensdb.hsapiens.v79
+  21 |     
+  22 |     USER $NB_UID
+--------------------
+ERROR: failed to solve: process "/bin/bash -o pipefail -c mamba install -y -c bioconda ensdb.hsapiens.v79" did not complete successfully: exit code: 1
