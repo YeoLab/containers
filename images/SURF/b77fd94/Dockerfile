@@ -1,3 +1,4 @@
+
 ################## BASE IMAGE ######################
 
 FROM jupyter/datascience-notebook:hub-2.2.2
@@ -32,6 +33,6 @@ RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages-R.txt
 
 RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github(repo = "keleslab/surf", ref = "b77fd948b76d974752bd61b260c7faf33e110182")'
-RUN Rscript -e 'IRkernel::installspec(name = "r_surf", displayname = "R SURF")'
+RUN Rscript -e 'IRkernel::installspec(name = "r_surf", displayname = "R SURF", user = FALSE)'
 
 USER $NB_UID
