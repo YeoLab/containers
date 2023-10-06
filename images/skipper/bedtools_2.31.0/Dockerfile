@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:hub-2.2.2
+FROM jupyter/minimal-notebook:python-3.11
 
 USER root
 
@@ -18,7 +18,8 @@ RUN apt-get update && apt-get install -y \
     liblzma-dev \
     libcurl4-gnutls-dev \
     libssl-dev \
-    perl
+    perl \
+    libsigsegv-dev
 
 RUN conda init bash && \
     . ~/.bashrc && \

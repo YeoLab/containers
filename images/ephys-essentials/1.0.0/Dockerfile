@@ -27,7 +27,7 @@ COPY python-packages.txt /tmp/python-packages.txt
 
 # Update image, install additional distro packages
 RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
-
+	
 # Install additional Python packages
 RUN pip install -r /tmp/python-packages.txt
 

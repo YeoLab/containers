@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:hub-2.2.2
+FROM jupyter/minimal-notebook:python-3.11
 
 USER root
 
@@ -17,10 +17,13 @@ RUN apt-get update && apt-get install -y \
     liblzma-dev \
     libcurl4-gnutls-dev \
     libssl-dev \
-    perl
+    perl \
+    libpcre2-dev \
+    libpcre3-dev
 
 RUN conda init bash && \
     . ~/.bashrc && \
-    conda install -y -c bioconda star=2.7.10b
+    conda install -y -c bioconda pcre star=2.7.10b
 
 USER $NB_UID
+ENV LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH

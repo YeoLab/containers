@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:hub-2.2.2
+FROM jupyter/minimal-notebook:python-3.11
 
 USER root
 
