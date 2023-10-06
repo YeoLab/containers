@@ -1,4 +1,4 @@
-FROM jupyter/r-notebook:r-4.1.3
+FROM jupyter/datascience-notebook:hub-2.2.2
 
 USER root
 
@@ -19,18 +19,16 @@ RUN apt-get update && apt-get install -y \
     libxml2 \
     && rm -rf /var/lib/apt/lists/*
 
-ENV R_LIBS=/home/jovyan/R/x86_64-conda-linux-gnu-library/4.1
+RUN R -e "dir.create(Sys.getenv('R_LIBS_USER'),recursive=TRUE)"
 
-RUN Rscript -e "dir.create(Sys.getenv('R_LIBS_USER'),recursive=TRUE)"
+RUN R -e "install.packages('groundhog',repos = 'http://cran.us.r-project.org')"
 
-RUN Rscript -e "install.packages('groundhog',repos = 'http://cran.us.r-project.org')"
+RUN R -e "groundhog::set.groundhog.folder('~/R_groundhog/')"
 
-RUN Rscript -e "groundhog::set.groundhog.folder('~/R_groundhog/')"
-
-RUN Rscript -e "groundhog::groundhog.library(c('tidyverse', 'VGAM', 'viridis', 'ggrepel', 'RColorBrewer', 'Rtsne', 'ggupset', 'ggdendro', 'cowplot', 'BiocManager'), '2022-03-11', force.install=TRUE)" \
+RUN R -e "groundhog::groundhog.library(c('tidyverse', 'VGAM', 'viridis', 'ggrepel', 'RColorBrewer', 'Rtsne', 'ggupset', 'ggdendro', 'cowplot', 'BiocManager'), '2022-03-11', force.install=TRUE)" \
     && R -q -e "BiocManager::install(c('GenomicRanges','fgsea','rtracklayer'))"
 
-# ENV R_LIBS=/home/jovyan/R/x86_64-conda-linux-gnu-library/4.1
+ENV R_LIBS=/home/jovyan/R/x86_64-conda-linux-gnu-library/4.1
 
 USER $NB_UID
 
