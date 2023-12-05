@@ -17,7 +17,9 @@ r-readr
 r-glmnet
 r-densityclust
 r-ddrtree
-r-seurat=4.3.0
+r-seurat
 bioconductor-biocparallel
 bioconductor-piano
-bioconductor-monocle
+bioconductor-monocle=2.28.0
+bioconductor-biobase
+r-leidenbase
