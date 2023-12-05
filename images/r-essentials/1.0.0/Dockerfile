@@ -18,15 +18,20 @@ LABEL about.tags="Genomics"
 USER root
 
 COPY apt-packages.txt /tmp/apt-packages.txt
-COPY conda-packages.txt /tmp/conda-packages.txt
+COPY bioconductor-conda-packages.txt /tmp/bioconductor-conda-packages.txt
+COPY r-conda-packages1.txt /tmp/r-conda-packages1.txt
+COPY r-conda-packages2.txt /tmp/r-conda-packages2.txt
 
 # Update image, install additional distro packages
 RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 
 # Install additional R packages from conda-forge using mamba
-RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
+RUN mamba install -y -c bioconda -c conda-forge --file /tmp/r-conda-packages1.txt
+RUN mamba install -y -c bioconda -c conda-forge --file /tmp/r-conda-packages2.txt
+RUN mamba install -y -c bioconda -c conda-forge --file /tmp/bioconductor-conda-packages.txt
 
 RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github("mojaveazure/seurat-disk")'
 RUN Rscript -e 'devtools::install_github("satijalab/seurat-data")'
+RUN Rscript -e 'IRkernel::installspec(name = "ressential_1.0.0", displayname = "R Essentials 1.0.0", user = FALSE)'
 USER $NB_UID
