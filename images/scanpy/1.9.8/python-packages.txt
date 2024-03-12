@@ -1,0 +1,11 @@
+torch
+scanpy==1.9.8
+decoupler
+gseapy
+scrublet
+scikit-misc
+matplotlib-venn
+harmonypy
+infercnvpy
+#llvmlite==0.38.0
+clustree
