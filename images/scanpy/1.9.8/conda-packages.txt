@@ -11,3 +11,5 @@ openpyxl
 xlsxwriter
 r-clustree
 bbknn
+goatools
+pandas
