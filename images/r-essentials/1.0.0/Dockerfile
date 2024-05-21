@@ -19,8 +19,8 @@ USER root
 
 COPY apt-packages.txt /tmp/apt-packages.txt
 COPY bioconductor-conda-packages.txt /tmp/bioconductor-conda-packages.txt
-COPY r-conda-packages1.txt /tmp/r-conda-packages1.txt
-COPY r-conda-packages2.txt /tmp/r-conda-packages2.txt
+# COPY r-conda-packages1.txt /tmp/r-conda-packages1.txt
+# COPY r-conda-packages2.txt /tmp/r-conda-packages2.txt
 
 # Update image, install additional distro packages
 RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
@@ -30,6 +30,7 @@ RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 RUN mamba install -y -c bioconda -c conda-forge r-tidyverse r-reticulate r-units r-ggplot2 r-dplyr r-rtsne r-ggrepel
 RUN mamba install -y -c bioconda -c conda-forge r-patchwork r-cowplot r-scales r-reshape2 r-future 
 RUN mamba install -y -c bioconda -c conda-forge r-sctransform r-seurat=4.3.0 r-ragg
+RUN mamba install -y -c bioconda -c conda-forge r-ggbeeswarm r-rcolorbrewer
 # RUN mamba install -y -c bioconda -c conda-forge 
 # RUN mamba install -y -c bioconda -c conda-forge --file /tmp/r-conda-packages2.txt
 RUN mamba install -y -c bioconda -c conda-forge --file /tmp/bioconductor-conda-packages.txt

@@ -1,7 +1,0 @@
-r-cowplot
-r-scales
-r-reshape2
-r-future
-r-sctransform
-r-seurat=4.3.0
-r-ragg
