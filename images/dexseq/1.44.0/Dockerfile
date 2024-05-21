@@ -29,5 +29,5 @@ RUN R CMD INSTALL --configure-vars='INCLUDE_DIR=/opt/conda/include/ LIB_DIR=/opt
 # RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org");BiocManager::install("UCSC.utils")'  # not available
 RUN Rscript -e 'devtools::install_github("Bioconductor/UCSC.utils", ref = "e7cd20fd138bb949853e1810b1d85d94ebefc121")'
 RUN Rscript -e 'devtools::install_github("Bioconductor/txdbmaker", ref = "dcc6dfc92edf577733cd540069f04d41292cd7c1")'
-
+RUN Rscript -e 'IRkernel::installspec(name = "dexseq_1440", displayname = "DEXSeq 1.44.0", user = FALSE)'
 USER $NB_UID
