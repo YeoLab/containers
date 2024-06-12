@@ -1,0 +1,4 @@
+build-essential
+software-properties-common
+cmake
+zlib1g-dev
