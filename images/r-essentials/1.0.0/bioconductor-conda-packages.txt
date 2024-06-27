@@ -1,3 +1,4 @@
 bioconductor-scater
 bioconductor-genomeinfodbdata=1.2.7
 bioconductor-singlecellexperiment
+bioconductor-biostrings

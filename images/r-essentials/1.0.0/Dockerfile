@@ -38,5 +38,6 @@ RUN mamba install -y -c bioconda -c conda-forge --file /tmp/bioconductor-conda-p
 RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github("mojaveazure/seurat-disk")'
 RUN Rscript -e 'devtools::install_github("satijalab/seurat-data")'
+RUN Rscript -e 'devtools::install_github("santiago1234/iCodon")'
 RUN Rscript -e 'IRkernel::installspec(name = "ressential_1.0.0", displayname = "R Essentials 1.0.0", user = FALSE)'
 USER $NB_UID
