@@ -39,5 +39,9 @@ RUN Rscript -e 'install.packages("devtools", repos = "http://cran.us.r-project.o
 RUN Rscript -e 'devtools::install_github("mojaveazure/seurat-disk")'
 RUN Rscript -e 'devtools::install_github("satijalab/seurat-data")'
 RUN Rscript -e 'devtools::install_github("santiago1234/iCodon")'
+RUN Rscript -e 'devtools::install_github("mikelove/deseq2", ref = "98d2ab74df97e2e97943fa5c996d292ef2aba180")'
+RUN Rscript -e 'install.packages("pkgbuild", repos = "http://cran.us.r-project.org")'
+RUN Rscript -e 'install.packages("callr", repos = "http://cran.us.r-project.org")'
+RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org");BiocManager::install("GenomeInfoDb", force = TRUE)'
 RUN Rscript -e 'IRkernel::installspec(name = "ressential_1.0.0", displayname = "R Essentials 1.0.0", user = FALSE)'
 USER $NB_UID
