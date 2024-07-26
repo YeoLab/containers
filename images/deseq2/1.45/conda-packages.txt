@@ -1,0 +1,13 @@
+r-v8
+r-ggplot2
+r-dplyr
+r-patchwork
+r-cowplot
+r-scales
+r-reshape2
+r-future
+r-readr
+r-rcolorbrewer
+r-pheatmap
+r-plotly
+r-ggfortify
