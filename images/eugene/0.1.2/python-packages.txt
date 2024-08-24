@@ -17,3 +17,4 @@ modisco-lite==2.2.1
 matplotlib==3.6.2
 backports.tarfile
 psutil==5.9.0
+pyarrow
