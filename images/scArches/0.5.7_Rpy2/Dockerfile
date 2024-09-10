@@ -41,3 +41,4 @@ RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-projec
 #RUN pip install jax[cuda]>=0.4
 
 USER $NB_UID
+ENV NUMBA_CACHE_DIR=/tscc/lustre/ddn/scratch/$USER
