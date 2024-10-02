@@ -28,5 +28,5 @@ RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
 RUN Rscript -e 'install.packages("devtools", repos = "https://cran.us.r-project.org")'
 # RUN Rscript -e 'install.packages("RCurl", repos = "https://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github("mikelove/deseq2", ref = "98d2ab74df97e2e97943fa5c996d292ef2aba180")'
-
+RUN Rscript -e 'IRkernel::installspec(name = "deseq2_1.39.3", displayname = "DESeq2-1.39.3", user = FALSE)'
 #USER $NB_UID
