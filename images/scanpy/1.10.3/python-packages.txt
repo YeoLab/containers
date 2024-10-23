@@ -1,0 +1,13 @@
+adjustText
+torch
+scanpy==1.10.3
+decoupler
+gseapy
+scrublet
+scikit-misc
+matplotlib-venn
+harmonypy
+infercnvpy
+clustree
+palantir
+scFates
