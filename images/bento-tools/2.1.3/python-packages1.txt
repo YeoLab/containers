@@ -1,0 +1,7 @@
+adjustText
+scanpy
+bento-tools==2.1.3
+spatialdata
+spatialdata-plot
+pandas>=2.0.0
+geopandas

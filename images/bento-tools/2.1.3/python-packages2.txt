@@ -1,0 +1,5 @@
+shapely
+anndata
+decoupler
+gseapy
+
