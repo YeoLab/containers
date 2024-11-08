@@ -15,18 +15,13 @@ LABEL about.license_file="https://github.com/scverse/rapids_singlecell/blob/main
 LABEL about.publication="https://zenodo.org/badge/latestdoi/364573913"
 LABEL about.tags="Genomics"
 
-COPY python-packages1.txt /tmp/python-packages1.txt
-COPY python-packages2.txt /tmp/python-packages2.txt
-COPY python-packages3.txt /tmp/python-packages3.txt
 COPY apt-packages.txt /tmp/apt-packages.txt
 
 RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
+COPY requirements.txt /tmp/requirements.txt
 
 # Install additional Python packages
 RUN pip install --upgrade pip
-RUN pip install -r /tmp/python-packages1.txt
-RUN pip install -r /tmp/python-packages2.txt
-RUN pip install -r /tmp/python-packages3.txt
-RUN pip install "dask[dataframe]" spatialdata-io
+RUN pip install -r /tmp/requirements.txt
 RUN python -m ipykernel install --name bento-2.1.3
 

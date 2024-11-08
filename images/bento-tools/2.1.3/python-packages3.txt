@@ -1,9 +1,0 @@
-scrublet
-scikit-misc
-matplotlib-venn
-harmonypy
-infercnvpy
-clustree
-jupyterlab
-ipykernel
-pyarrow
