@@ -5,7 +5,7 @@ FROM jupyter/datascience-notebook:hub-2.2.2
 ################## METADATA ######################
 
 LABEL base_image="jupyter/datascience-notebook:hub-2.2.2"
-LABEL version="1"
+LABEL version="2"
 LABEL software="scanpy"
 LABEL software.version="1.10.3"
 LABEL about.summary="Single-Cell Analysis in Python. Scales to >1M cells."

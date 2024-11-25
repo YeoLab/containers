@@ -11,3 +11,4 @@ infercnvpy
 clustree
 palantir
 scFates
+scikit-posthocs
