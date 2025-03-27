@@ -23,5 +23,5 @@ COPY requirements.txt /tmp/requirements.txt
 # Install additional Python packages
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
+RUN pip install opencv-python
 RUN python -m ipykernel install --name bento-2.1.3
-

@@ -16,3 +16,6 @@ libnode-dev
 libgmp3-dev
 gcc
 g++
+ffmpeg
+libsm6
+libxext6
