@@ -1,0 +1,6 @@
+tensorflow
+spliceai
+plotly
+seaborn
+matplotlib
+keras
