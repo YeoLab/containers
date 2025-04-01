@@ -4,3 +4,7 @@ plotly
 seaborn
 matplotlib
 keras
+bedtools
+samtools
+pybedtools
+pysam
