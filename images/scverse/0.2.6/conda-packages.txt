@@ -1,0 +1,5 @@
+cudnn
+cudatoolkit
+scikit-misc
+hdf5
+mkl-service

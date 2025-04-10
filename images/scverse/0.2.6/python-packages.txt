@@ -1,0 +1,16 @@
+colorcet
+combat
+leidenalg
+matplotlib-venn
+numpy
+pandas
+panel
+plotnine
+pysam
+rpy2
+scrublet
+seaborn
+setuptools-scm
+umap-learn
+watermark
+typing_extensions==4.11.0

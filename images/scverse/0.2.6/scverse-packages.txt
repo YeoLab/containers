@@ -1,0 +1,15 @@
+anndata
+anndata2ri
+bento-tools==2.1.4.post2
+xarray
+cellpose
+gprofiler-official
+scanpy
+scikit-image[optional]
+scirpy
+seaborn
+setuptools-scm
+sopa
+spatialdata==0.2.6
+squidpy[interactive]
+tangram-sc
