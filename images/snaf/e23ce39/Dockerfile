@@ -29,6 +29,8 @@ RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
 # Install additional R packages from conda-forge using mamba
 #RUN mamba install -y -c bioconda -c r -c conda-forge -c anaconda --file /tmp/conda-packages.txt
 RUN pip install --ignore-installed llvmlite
-RUN pip install --ignore-installed git+https://github.com/frankligy/SNAF.git@e23ce39512a1a7f58c74e59b4b7cedc89248b908
+#RUN pip install --ignore-installed git+https://github.com/frankligy/SNAF.git@e23ce39512a1a7f58c74e59b4b7cedc89248b908
+RUN pip install --ignore-installed git+https://github.com/byee4/SNAF.git@58dc94b54b9f91a5703544a2cb687f40a9e37a83
 RUN pip install seaborn==0.11.2
+RUN apt-get install -y tcsh
 USER $NB_UID
