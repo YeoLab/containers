@@ -41,6 +41,7 @@ jobs:
         env:
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           DOCKERFILE: ${{ inputs.dockerfile }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
@@ -51,7 +52,11 @@ jobs:
           if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
             changed_files="$DOCKERFILE"
           elif [[ "$BEFORE_SHA" =~ ^0+$ ]]; then
-            changed_files="$(git ls-tree -r --name-only "$GITHUB_SHA")"
+            # A branch's first push has no predecessor SHA. Compare it with
+            # the default branch instead of treating every repository file as
+            # newly added.
+            base_sha="$(git merge-base "origin/$DEFAULT_BRANCH" "$GITHUB_SHA")"
+            changed_files="$(git diff --name-only --diff-filter=AMR "$base_sha" "$GITHUB_SHA")"
           else
             changed_files="$(git diff --name-only --diff-filter=AMR "$BEFORE_SHA" "$GITHUB_SHA")"
           fi
@@ -106,7 +111,6 @@ jobs:
               --label "org.opencontainers.image.url=$source_url" \
               --label "org.opencontainers.image.title=$image_name" \
               --provenance=mode=max \
-              --sbom=true \
               --push \
               "$context"
           done

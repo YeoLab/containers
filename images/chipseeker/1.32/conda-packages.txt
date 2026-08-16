@@ -1,4 +1,4 @@
-bioconductor-chipseeker
+bioconductor-chipseeker=1.32.0
 bioconductor-txdb.hsapiens.ucsc.hg38.knowngene
 bioconductor-ensdb.hsapiens.v75
 bioconductor-clusterprofiler
