@@ -111,7 +111,6 @@ jobs:
               --label "org.opencontainers.image.url=$source_url" \
               --label "org.opencontainers.image.title=$image_name" \
               --provenance=mode=max \
-              --sbom=true \
               --push \
               "$context"
           done
