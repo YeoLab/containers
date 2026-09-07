@@ -4,6 +4,8 @@
 
 ### Fixed
 
+- Pinned the Bento Tools 2.1.3 base image to RAPIDS Singlecell 0.10.9 so its
+  legacy CUDA 12.6 dependency set is not broken by changes to the `latest` tag.
 - Updated the Bento Tools 2.1.3 image to cryptography 49.0.0 and its required
   cffi 2.0.0 dependency to remediate CVE-2026-69249 (GHSA-jwv3-5hgf-82ww).
 - Updated the ChipSeeker 1.32 image's Jupyter base and fixed the Bioconductor

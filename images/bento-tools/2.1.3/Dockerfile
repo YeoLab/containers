@@ -1,10 +1,10 @@
 ################## BASE IMAGE ######################
 
-FROM ghcr.io/scverse/rapids_singlecell:latest
+FROM ghcr.io/scverse/rapids_singlecell:v0.10.9@sha256:ad9b0e1828c1cb718bcbf966288bce3bf9ea63b768eef3f7d1873a19f76e55c8
 
 ################## METADATA ######################
 
-LABEL base_image="ghcr.io/scverse/rapids_singlecell:latest"
+LABEL base_image="ghcr.io/scverse/rapids_singlecell:v0.10.9"
 LABEL version="1"
 LABEL software="rapids-singlecell"
 LABEL software.version="0.10.9"
