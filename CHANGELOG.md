@@ -17,5 +17,11 @@
 
 ### Added
 
+- DRUID complete-analysis container at `images/druid/complete`, including
+  verified GEO/ENA sample mappings, compatibility fixes, and full workflow tests.
+- DRUID builds triggered by supporting-file changes; GitHub Actions tests the
+  container before publishing `ghcr.io/yeolab/druid:complete` and a commit tag,
+  and retains validation artifacts for 14 days.
+
 - GitHub Actions publishing of changed Dockerfiles to GitHub Container Registry
   (GHCR), including source, SBOM, and provenance metadata.

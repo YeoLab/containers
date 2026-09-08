@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "**/Dockerfile"
+      - "images/druid/complete/**"
+      - ".github/workflows/publish-ghcr.yml"
   workflow_dispatch:
     inputs:
       dockerfile:
@@ -42,7 +44,7 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          DOCKERFILE: ${{ inputs.dockerfile }}
+          REQUESTED_DOCKERFILE: ${{ inputs.dockerfile }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_SHA: ${{ github.sha }}
@@ -50,19 +52,24 @@ jobs:
           set -euo pipefail
 
           if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
-            changed_files="$DOCKERFILE"
+            changed_files="$REQUESTED_DOCKERFILE"
           elif [[ "$BEFORE_SHA" =~ ^0+$ ]]; then
             # A branch's first push has no predecessor SHA. Compare it with
             # the default branch instead of treating every repository file as
             # newly added.
             base_sha="$(git merge-base "origin/$DEFAULT_BRANCH" "$GITHUB_SHA")"
-            changed_files="$(git diff --name-only --diff-filter=AMR "$base_sha" "$GITHUB_SHA")"
+            changed_files="$(git diff --name-only --diff-filter=AMRD "$base_sha" "$GITHUB_SHA")"
           else
-            changed_files="$(git diff --name-only --diff-filter=AMR "$BEFORE_SHA" "$GITHUB_SHA")"
+            changed_files="$(git diff --name-only --diff-filter=AMRD "$BEFORE_SHA" "$GITHUB_SHA")"
           fi
 
           mapfile -t dockerfiles < <(
-            printf '%s\n' "$changed_files" | awk '/(^|\/)Dockerfile$/'
+            printf '%s\n' "$changed_files" | awk '
+              /^images\/druid\/complete\// || $0 == ".github/workflows/publish-ghcr.yml" {
+                print "images/druid/complete/Dockerfile"; next
+              }
+              /(^|\/)Dockerfile$/ { print }
+            ' | sort -u
           )
 
           if (( ${#dockerfiles[@]} == 0 )); then
@@ -101,6 +108,17 @@ jobs:
             image_tag="$(printf '%s' "$image_tag" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_.-]/-/g')"
             image="ghcr.io/$owner/$image_name"
 
+            if [[ "$context" == "images/druid/complete" ]]; then
+              # Test the same cached build before publishing either GHCR tag.
+              docker buildx build --platform linux/amd64 --load \
+                --file "$dockerfile" --tag druid:ci "$context"
+              mkdir -p "$RUNNER_TEMP/druid-test"
+              docker run --rm --platform linux/amd64 \
+                --volume "$RUNNER_TEMP/druid-test:/work" \
+                druid:ci druid smoke-test --work /work \
+                2>&1 | tee "$RUNNER_TEMP/druid-test.log"
+            fi
+
             echo "Publishing $dockerfile as $image:$image_tag and $image:sha-$revision"
             docker buildx build \
               --file "$dockerfile" \
@@ -114,3 +132,17 @@ jobs:
               --push \
               "$context"
           done
+
+      - name: Upload DRUID validation logs and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: druid-validation-${{ github.sha }}
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            ${{ runner.temp }}/druid-test.log
+            ${{ runner.temp }}/druid-test/**/Analysis/HEK293_R1/*.csv
+            ${{ runner.temp }}/druid-test/**/Analysis/HEK293_R1/*.pdf
+            ${{ runner.temp }}/druid-test/**/Analysis/HEK293_R1/*provenance.json
+            ${{ runner.temp }}/druid-test/**/Analysis/HEK293_R1/*Info.txt

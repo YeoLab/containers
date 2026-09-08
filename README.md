@@ -70,3 +70,28 @@ apptainer pull fastp_0.23.3.sif docker://ghcr.io/yeolab/fastp:sha-<full-commit-s
 
 Set the GHCR package to public from GitHub's **Packages** page if users should
 be able to pull it without credentials.
+
+## DRUID complete analysis
+
+The [DRUID build context](images/druid/complete/) includes the software,
+GEO/ENA sample manifest, full-analysis runner, and synthetic end-to-end tests.
+Changes to any file in `images/druid/complete/` trigger publishing, including
+changes to scripts, tests, and configuration. The publishing workflow itself
+also triggers a DRUID rebuild. CI builds for `linux/amd64`, runs the complete
+synthetic analysis and reference-converter checks, and publishes only after
+those checks pass. Validation logs, half-life tables, heatmaps, and provenance
+are retained as Actions artifacts for 14 days.
+
+```bash
+docker pull --platform linux/amd64 ghcr.io/yeolab/druid:complete
+docker run --rm --platform linux/amd64 \
+  -v /Volumes/X9Pro/Yeo/DRUID:/work \
+  ghcr.io/yeolab/druid:complete druid all
+```
+
+Assign at least 32 GB RAM to Docker before running the real-data analysis
+(40 GB recommended). The CI test uses a small synthetic reference and does
+not download or analyze the full GEO experiment. See the image's
+[README](images/druid/complete/README.md) for separate download, reference,
+analysis, and fitting commands. The image is also tagged
+`ghcr.io/yeolab/druid:sha-<full-commit-sha>`.
