@@ -1,38 +1,49 @@
-# DRUID complete-analysis container
+# DRUID complete-analysis image
 
-Docker environment and command-line runner for the [DRUID complete-analysis tutorial](https://github.com/risslandlab/DRUID/wiki/Complete-analysis), pinned to upstream commit `455be347cab87b62a2d1f081ec34cafffdf81622`.
+Singularity-ready command-line image for the [DRUID complete-analysis tutorial](https://github.com/risslandlab/DRUID/wiki/Complete-analysis), pinned to upstream commit `455be347cab87b62a2d1f081ec34cafffdf81622`.
 
-The project working directory is `/Volumes/X9Pro/Yeo/DRUID`. Docker mounts it at `/work`; input data, references, temporary files, and analysis outputs remain on that volume. The image contains software only.
+This guide assumes a cluster where Docker is unavailable. Singularity runs the
+published OCI image without a Docker daemon. Your project directory is bound
+at `/work`; input data, references, temporary files, and analysis outputs stay
+in that directory. The image contains software only.
 
-## Published container
+## Published image
 
 GitHub Actions builds this directory from `YeoLab/containers` and publishes
 `ghcr.io/yeolab/druid:complete` plus `ghcr.io/yeolab/druid:sha-<full-commit-sha>`
-after the end-to-end tests pass. All supporting-file changes trigger CI.
+after the end-to-end tests pass. All supporting-file changes trigger CI. Pull
+the tested revision used by this guide on a login node or any node with network
+access:
 
 ```bash
-docker pull --platform linux/amd64 ghcr.io/yeolab/druid:complete
-docker run --rm --platform linux/amd64 \
-  -v /Volumes/X9Pro/Yeo/DRUID:/work \
-  ghcr.io/yeolab/druid:complete druid all
+singularity pull druid.sif docker://ghcr.io/yeolab/druid:sha-7941ba6aebf0fd4beb48643ec373374b50b02bbc
+export DRUID_IMAGE="$PWD/druid.sif"
 ```
 
-To build from this repository, run `docker compose build` inside
-`images/druid/complete/`. The workstation instructions below use the original
-standalone working directory; published-container runs mount that directory
-for input data and results without requiring a local build context.
+`druid.sif` is an immutable local image file. Keep it outside the analysis
+directory if your cluster backs that directory up or applies a quota to it. To
+build the image from this repository instead, use `docker compose build` inside
+`images/druid/complete/` on a Docker-capable development machine.
 
-## Build and test
+If GHCR returns an authorization error, authenticate Singularity with a GitHub
+token that has `read:packages` access, or ask a package administrator to make
+the package public. The repository [GHCR authentication instructions](../../../README.md#pulling-a-singularityapptainer-image-from-ghcr)
+cover the login command.
+
+## Test the pulled image
 
 ```bash
-cd /Volumes/X9Pro/Yeo/DRUID
-docker compose build
-mkdir -p work
+mkdir -p "$HOME/druid-smoke-test"
 # Includes a small synthetic reference and all six time points, through half-life fitting.
-docker compose run --rm druid druid smoke-test --work /work/work
+singularity exec --cleanenv \
+  --bind "$HOME/druid-smoke-test:/work" --pwd /work \
+  "$DRUID_IMAGE" druid smoke-test --work /work
 ```
 
-The image targets **linux/amd64**, because the bundled UCSC binaries are x86-64. Compose sets the platform automatically. On Apple Silicon, Docker uses emulation; a Linux x86-64 workstation is preferable for a full analysis. A direct build is also supported:
+The image targets **linux/amd64**, because the bundled UCSC binaries are
+x86-64. Run it on an x86-64 Linux cluster node. The smoke-test outputs are
+written under `$HOME/druid-smoke-test` and can be removed after inspection.
+For maintainers with Docker, a direct build is also supported:
 
 ```bash
 docker build --platform linux/amd64 -t druid:complete .
@@ -40,30 +51,58 @@ docker build --platform linux/amd64 -t druid:complete .
 
 ## Run the tutorial data
 
-Assign **at least 32 GB RAM to Docker; 40 GB is recommended**, with eight CPUs. The full human/fly/yeast workflow checks the effective Linux/container memory limit before running. The small synthetic test fits within the current approximately 12 GB Docker allocation. Plan for roughly **100 GB of free working space**, depending on BAM sizes and temporary coverage files, plus Docker image storage. The six compressed FASTQs alone total 1,615,254,957 bytes (~1.50 GiB).
+Request **at least 32 GB RAM; 40 GB is recommended**, with eight CPUs from
+your scheduler. The full human/fly/yeast workflow checks the effective memory
+limit before running. Plan for roughly **100 GB of free working space**,
+depending on BAM sizes and temporary coverage files. The six compressed FASTQs
+alone total 1,615,254,957 bytes (~1.50 GiB).
+
+Run on an allocated compute node, not a shared login node. For Slurm, a typical
+interactive allocation is:
 
 ```bash
-cd /Volumes/X9Pro/Yeo/DRUID
+srun --pty --cpus-per-task=8 --mem=40G --time=24:00:00 bash
+```
+
+Then create or enter the directory that will hold the tutorial inputs and
+outputs. Set `THREADS` to no more than the CPUs requested from the scheduler.
+
+```bash
+mkdir -p "$HOME/DRUID"
+cd "$HOME/DRUID"
 mkdir -p tmp logs
 # Full workflow: FASTQ download -> reference construction -> QC -> trimming ->
 # alignment -> HTSeq -> preDRUID -> DRUID and spike-in half-life calculations.
 set -o pipefail
-docker compose run --rm druid druid all 2>&1 | tee logs/full-analysis.log
+THREADS=8 singularity exec --cleanenv \
+  --env THREADS=8,TMPDIR=/work/tmp \
+  --bind "$PWD:/work" --pwd /work \
+  "$DRUID_IMAGE" druid all 2>&1 | tee logs/full-analysis.log
 ```
 
 The same work can be run in separate stages:
 
 ```bash
-# Can run before increasing Docker's RAM allocation.
-docker compose run --rm druid druid download
-# Requires the full memory allocation.
-docker compose run --rm druid druid reference
-docker compose run --rm druid druid analyze
+# Can run before requesting the full-memory compute allocation.
+singularity exec --cleanenv --env THREADS=8,TMPDIR=/work/tmp \
+  --bind "$PWD:/work" --pwd /work "$DRUID_IMAGE" druid download
+# Require the full allocation for the remaining stages.
+singularity exec --cleanenv --env THREADS=8,TMPDIR=/work/tmp \
+  --bind "$PWD:/work" --pwd /work "$DRUID_IMAGE" druid reference
+singularity exec --cleanenv --env THREADS=8,TMPDIR=/work/tmp \
+  --bind "$PWD:/work" --pwd /work "$DRUID_IMAGE" druid analyze
 # Repeat only the final R analysis from existing count and coverage tables.
-docker compose run --rm druid druid fit
+singularity exec --cleanenv --env THREADS=8,TMPDIR=/work/tmp \
+  --bind "$PWD:/work" --pwd /work "$DRUID_IMAGE" druid fit
 ```
 
-Use `THREADS=4 docker compose run --rm druid druid analyze` to change the thread budget. Samples are processed sequentially to bound memory; FastQC uses at most four simultaneous jobs. All data are single-end, reverse-stranded, as in the tutorial. QC reports still need scientific review.
+`DRUID_IMAGE` records the absolute path to the file created by `singularity
+pull`; use the same bind and working-directory arguments for every DRUID
+command.
+`--cleanenv` avoids accidentally inheriting host Python, R, or Java settings.
+Samples are processed sequentially to bound memory; FastQC uses at most four
+simultaneous jobs. All data are single-end, reverse-stranded, as in the
+tutorial. QC reports still need scientific review.
 
 The downloader verifies ENA MD5 checksums, skips verified existing files, and resumes `.partial` downloads. A checksum failure stops processing. If a partial file has a checksum mismatch, remove that partial file and retry. Analysis refuses to overwrite an existing `Analysis/HEK293_R1` directory; after a failed run, inspect its logs and move the directory aside before rerunning `analyze`. Reference preparation may be rerun, using cached downloads. `all` rebuilds the reference and expects a fresh analysis directory.
 
@@ -85,7 +124,8 @@ Reference preparation downloads UCSC **hg38/refGene, dm6/refGene, and sacCer3/sg
 The final FASTA and GTF SHA-256 hashes are recorded in `provenance.json`. UCSC annotations at these URLs can change. To use archived, already filtered and species-labeled references:
 
 ```bash
-docker compose run --rm druid druid reference \
+singularity exec --cleanenv --env THREADS=8,TMPDIR=/work/tmp \
+  --bind "$PWD:/work" --pwd /work "$DRUID_IMAGE" druid reference \
   --fasta /work/my-reference/combined.fa --gtf /work/my-reference/combined.gtf
 ```
 

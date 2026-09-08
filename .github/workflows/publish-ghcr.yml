@@ -114,6 +114,7 @@ jobs:
                 --file "$dockerfile" --tag druid:ci "$context"
               mkdir -p "$RUNNER_TEMP/druid-test"
               docker run --rm --platform linux/amd64 \
+                --user "$(id -u):$(id -g)" \
                 --volume "$RUNNER_TEMP/druid-test:/work" \
                 druid:ci druid smoke-test --work /work \
                 2>&1 | tee "$RUNNER_TEMP/druid-test.log"

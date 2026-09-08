@@ -2,6 +2,9 @@
 
 ## 2026-09-08
 
+- Document Singularity-first deployment and tutorial execution on Dockerless
+  clusters using the tested `sha-7941ba6aebf0fd4beb48643ec373374b50b02bbc` image.
+
 - Add GitHub Actions publication to `ghcr.io/yeolab/druid:complete` after end-to-end validation, with rebuilds triggered by supporting-file changes.
 
 - Add an amd64 Dockerfile and Compose service for DRUID's complete-analysis workflow.
