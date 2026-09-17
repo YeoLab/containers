@@ -13,5 +13,7 @@
 
 ### Added
 
+- rMATS-long v2.1.0 image (`images/rmats-long/v2.1.0/Dockerfile`), built from
+  the upstream release tag with Miniforge; publishes `ghcr.io/yeolab/rmats-long:v2.1.0`.
 - GitHub Actions publishing of changed Dockerfiles to GitHub Container Registry
   (GHCR), including source, SBOM, and provenance metadata.
