@@ -1,0 +1,12 @@
+.DS_Store
+upstream/
+reference/
+vendor/
+logs/
+work/
+tmp/
+ExternalData/
+RawSequencingData/
+Analysis/
+__pycache__/
+*.pyc

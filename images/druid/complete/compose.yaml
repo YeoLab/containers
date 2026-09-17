@@ -1,0 +1,14 @@
+services:
+  druid:
+    image: druid:complete
+    platform: linux/amd64
+    build:
+      context: .
+    working_dir: /work
+    volumes:
+      - .:/work
+    environment:
+      THREADS: ${THREADS:-8}
+      TMPDIR: /work/tmp
+    init: true
+    command: ["bash"]
