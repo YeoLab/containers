@@ -20,6 +20,10 @@
 
 ### Added
 
+- skipper-clipper-compare 1.0.0 (`images/skipper-clipper-compare/1.0.0`): the
+  pinned Python/bedtools environment for skipper-clipper-snakemake's
+  Skipper-vs-CLIPper comparison, published as
+  `ghcr.io/yeolab/skipper-clipper-compare:1.0.0`.
 - Singularity-first DRUID deployment and tutorial instructions for Dockerless
   clusters, including the tested `sha-7941ba6aebf0fd4beb48643ec373374b50b02bbc`
   image pull command.
