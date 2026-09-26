@@ -20,6 +20,8 @@
 
 ### Added
 
+- HOMER 5.1 (`images/homer/5.1`) with bedtools 2.31.1 and Python 3.12 for
+  FASTA-mode motif discovery, published as `ghcr.io/yeolab/homer:5.1`.
 - skipper-clipper-compare 1.0.0 (`images/skipper-clipper-compare/1.0.0`): the
   pinned Python/bedtools environment for skipper-clipper-snakemake's
   Skipper-vs-CLIPper comparison, published as
