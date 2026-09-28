@@ -43,6 +43,27 @@ write`, already declared in the workflow. If organization policy prevents a
 publish, allow GitHub Actions to create packages for this repository or replace
 the token with an approved package-write token.
 
+## PacBio full-length isoform differential analysis
+
+The tools listed under **Differential transcript analysis** and **Differential
+splicing usage** in PacBio's full-length isoform sequencing application note
+are available as individually versioned images:
+
+| Application-note section | Tool | Image |
+| --- | --- | --- |
+| Differential transcript analysis | tappAS 1.1.3 | `ghcr.io/yeolab/tappas:1.1.3` |
+| Differential transcript analysis | DESeq2 1.52.0 | `ghcr.io/yeolab/deseq2:1.52.0` |
+| Differential transcript analysis | DRIMSeq 1.40.0 | `ghcr.io/yeolab/drimseq:1.40.0` |
+| Differential splicing usage | DEXSeq 1.58.0 | `ghcr.io/yeolab/dexseq:1.58.0` |
+| Differential splicing usage | SUPPA2 2.4 | `ghcr.io/yeolab/suppa2:2.4` |
+
+DESeq2, DRIMSeq, and DEXSeq use the Bioconductor 3.23 release on R 4.6.
+SUPPA2 is a command-line image whose arguments are passed directly to
+`suppa.py`. tappAS is an x86-64 GUI image and needs an X11 display; see each
+image directory's README for launch examples and resource requirements. Every
+Dockerfile contains a build-time smoke test, so GitHub Actions publishes an
+image only after its installed version and a representative operation pass.
+
 ## Pulling a Singularity/Apptainer image from GHCR
 
 Install [Apptainer](https://apptainer.org/) (or SingularityCE), then pull a

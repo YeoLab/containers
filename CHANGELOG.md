@@ -20,6 +20,11 @@
 
 ### Added
 
+- Latest stable containers for all tools in the PacBio full-length isoform
+  sequencing note's differential-analysis sections: tappAS 1.1.3, DESeq2
+  1.52.0, DRIMSeq 1.40.0, DEXSeq 1.58.0, and SUPPA2 2.4. Each image includes a
+  build-time version and functional smoke test and is published under its
+  versioned GHCR tag.
 - HOMER 5.1 (`images/homer/5.1`) with bedtools 2.31.1 and Python 3.12 for
   FASTA-mode motif discovery, published as `ghcr.io/yeolab/homer:5.1`.
 - skipper-clipper-compare 1.0.0 (`images/skipper-clipper-compare/1.0.0`): the
