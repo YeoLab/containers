@@ -20,6 +20,12 @@
 
 ### Added
 
+- Latest stable containers for the PacBio full-length isoform sequencing
+  note's transcript-visualization and isoform-classification/quantification
+  tools: Swan 3.2, ggtranscript 1.0.0, SQANTI3 6.0.2, TALON 6.0.1, Cerberus
+  1.1, LAPA 0.0.5, FLAIR 3.0.1, lr-kallisto 0.52.0, IsoQuant 4.0.0, Bambu
+  3.14.0, and Oarfish 0.10.3. Each image includes a build-time functional
+  verification and a versioned GHCR publishing target.
 - Latest stable containers for all tools in the PacBio full-length isoform
   sequencing note's differential-analysis sections: tappAS 1.1.3, DESeq2
   1.52.0, DRIMSeq 1.40.0, DEXSeq 1.58.0, and SUPPA2 2.4. Each image includes a

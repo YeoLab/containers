@@ -43,7 +43,7 @@ write`, already declared in the workflow. If organization policy prevents a
 publish, allow GitHub Actions to create packages for this repository or replace
 the token with an approved package-write token.
 
-## PacBio full-length isoform differential analysis
+## PacBio full-length isoform analysis
 
 The tools listed under **Differential transcript analysis** and **Differential
 splicing usage** in PacBio's full-length isoform sequencing application note
@@ -63,6 +63,37 @@ SUPPA2 is a command-line image whose arguments are passed directly to
 image directory's README for launch examples and resource requirements. Every
 Dockerfile contains a build-time smoke test, so GitHub Actions publishes an
 image only after its installed version and a representative operation pass.
+
+The application note's transcript-visualization tools are also available:
+
+| Application-note section | Tool | Image |
+| --- | --- | --- |
+| Transcript visualization | Swan 3.2 | `ghcr.io/yeolab/swan:3.2` |
+| Transcript visualization | ggtranscript 1.0.0 | `ghcr.io/yeolab/ggtranscript:1.0.0` |
+
+The latest stable releases of the note's isoform classification and
+quantification tools are packaged as:
+
+| Tool | Image |
+| --- | --- |
+| SQANTI3 6.0.2 | `ghcr.io/yeolab/sqanti3:6.0.2` |
+| TALON 6.0.1 | `ghcr.io/yeolab/talon:6.0.1` |
+| Cerberus 1.1 | `ghcr.io/yeolab/cerberus:1.1` |
+| LAPA 0.0.5 | `ghcr.io/yeolab/lapa:0.0.5` |
+| FLAIR 3.0.1 | `ghcr.io/yeolab/flair:3.0.1` |
+| lr-kallisto / kallisto LongKmer 0.52.0 | `ghcr.io/yeolab/lr-kallisto:0.52.0` |
+| IsoQuant 4.0.0 | `ghcr.io/yeolab/isoquant:4.0.0` |
+| Bambu 3.14.0 | `ghcr.io/yeolab/bambu:3.14.0` |
+| Oarfish 0.10.3 | `ghcr.io/yeolab/oarfish:0.10.3` |
+
+Swan and the Python command-line tools use checksum-pinned release artifacts;
+ggtranscript is pinned to the current upstream commit because the project has
+not published GitHub releases. SQANTI3 and TALON use exact Bioconda builds,
+Bambu uses Bioconductor 3.23, and lr-kallisto uses kallisto's official
+LongKmer binary. The per-image READMEs document entrypoints, architecture, and
+upstream version caveats. Build-time tests exercise transcript parsing,
+annotation conversion, database creation, indexing, or quantification as
+appropriate instead of checking only `--version` output.
 
 ## Pulling a Singularity/Apptainer image from GHCR
 

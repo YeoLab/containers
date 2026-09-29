@@ -1,0 +1,25 @@
+diff --git a/cerberus/cerberus.py b/cerberus/cerberus.py
+index 35a87f3..ad34177 100644
+--- a/cerberus/cerberus.py
++++ b/cerberus/cerberus.py
+@@ -232,0 +233 @@ def number_gtf_ends(bed, gtf, mode):
++    gr_gtf['Strand'] = gr_gtf['Strand'].astype(str)
+@@ -237,0 +239 @@ def number_gtf_ends(bed, gtf, mode):
++    bed['Strand'] = bed['Strand'].astype(str)
+@@ -245 +247 @@ def number_gtf_ends(bed, gtf, mode):
+-        temp = pr.PyRanges(gr_gtf.features.tss().df[cols])
++        temp = gr_gtf.features.tss().df[cols]
+@@ -247 +249,3 @@ def number_gtf_ends(bed, gtf, mode):
+-        temp = pr.PyRanges(gr_gtf.features.tes().df[cols])
++        temp = gr_gtf.features.tes().df[cols]
++    temp['Strand'] = temp['Strand'].astype(str)
++    temp = pr.PyRanges(temp)
+@@ -1665,0 +1670 @@ def get_ends_from_gtf(gtf, mode, dist, slack):
++        gr_gtf['Strand'] = gr_gtf['Strand'].astype(str)
+@@ -1678 +1683,3 @@ def get_ends_from_gtf(gtf, mode, dist, slack):
+-    bed = pr.PyRanges(bed.rename({'ThickStart': 'gene_id'}, axis=1))
++    bed = bed.rename({'ThickStart': 'gene_id'}, axis=1)
++    bed['Strand'] = bed['Strand'].astype(str)
++    bed = pr.PyRanges(bed)
+@@ -1778,0 +1786 @@ def get_ics_from_gtf(gtf):
++    df['Strand'] = df['Strand'].astype(str)
