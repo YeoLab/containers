@@ -1,0 +1,8 @@
+name: homer
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12
+  - homer=5.1
+  - bedtools=2.31.1
