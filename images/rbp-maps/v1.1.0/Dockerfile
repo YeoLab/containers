@@ -5,7 +5,7 @@ FROM debian:trixie
 ################## METADATA ######################
 
 LABEL base_image="debian:trixie"
-LABEL version="1"
+LABEL version="2"
 LABEL software="rbp-maps"
 LABEL software.version="v1.1.0"
 LABEL about.summary="RNA-binding protein splicing and feature maps from CLIP-seq density or peaks"
@@ -19,7 +19,8 @@ ARG RBP_MAPS_VERSION=v1.1.0
 
 # Builds the tagged release with its own environment.yml (Python 3.13 plus
 # samtools, bedtools, bedGraphToBigWig and bedToBigBed from bioconda), using
-# Miniforge so only conda-forge/bioconda channels are involved.
+# Miniforge so only conda-forge/bioconda channels are involved. JupyterLab is
+# included so the image can serve notebooks (e.g. via galyleo --sif).
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        ca-certificates \
@@ -33,6 +34,7 @@ RUN apt-get update \
     && git clone --depth 1 --branch "${RBP_MAPS_VERSION}" 'https://github.com/YeoLab/rbp-maps.git' /rbp-maps \
     && /opt/conda/bin/mamba env create -y -p /opt/rbp-maps -f /rbp-maps/environment.yml \
     && /opt/rbp-maps/bin/python -m pip install --no-cache-dir /rbp-maps \
+    && /opt/conda/bin/mamba install -y -p /opt/rbp-maps -c conda-forge jupyterlab ipykernel \
     && /opt/conda/bin/conda clean -afy
 
 ENV PATH=/opt/rbp-maps/bin:${PATH}
