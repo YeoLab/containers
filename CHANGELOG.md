@@ -20,6 +20,9 @@
 
 ### Added
 
+- rbp-maps v1.1.0 image (`images/rbp-maps/v1.1.0/Dockerfile`), built from the
+  upstream release tag with Miniforge and the release's own `environment.yml`;
+  publishes `ghcr.io/yeolab/rbp-maps:v1.1.0`.
 - Latest stable containers for the PacBio full-length isoform sequencing
   note's transcript-visualization and isoform-classification/quantification
   tools: Swan 3.2, ggtranscript 1.0.0, SQANTI3 6.0.2, TALON 6.0.1, Cerberus
