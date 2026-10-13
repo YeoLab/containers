@@ -20,8 +20,8 @@ RUN apt-get update \
     && rm /tmp/suppa.tar.gz \
     && sed -i "s/version='%(prog)s 2.3'/version='%(prog)s 2.4'/" /opt/suppa/suppa.py \
     && sed -i 's/from statsmodels\.sandbox\.stats\.multicomp import multipletests/from statsmodels.stats.multitest import multipletests/' /opt/suppa/lib/diff_tools.py \
-    && ln -s /opt/suppa/suppa.py /usr/local/bin/suppa.py \
-    && chmod +x /opt/suppa/suppa.py
+    && printf '#!/bin/sh\nexec python3 /opt/suppa/suppa.py "$@"\n' > /usr/local/bin/suppa.py \
+    && chmod +x /usr/local/bin/suppa.py
 
 RUN pip install --no-cache-dir \
       matplotlib==3.11.2 \

@@ -4,6 +4,12 @@
 
 ### Fixed
 
+- Replaced Debian's minimap2 2.27 package in the FLAIR 3.0.1 image with the
+  official minimap2 2.30 release; the Debian build writes `cs:Z` instead of
+  `MD:Z` for `--MD`, which made `flair transcriptome` fail with "Missing AS or
+  MD tag". The build verification now checks for MD tags.
+- Made `suppa.py` on `PATH` in the SUPPA2 2.4 image a wrapper script; upstream
+  `suppa.py` has no shebang, so the old symlink failed under `singularity exec`.
 - Run DRUID CI validation with the GitHub Actions runner's UID/GID so its
   root-owned smoke-test directory no longer prevents artifact upload after a
   successful image publication.

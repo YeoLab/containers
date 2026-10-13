@@ -9,15 +9,23 @@ LABEL software="FLAIR" \
 
 ARG FLAIR_URL="https://files.pythonhosted.org/packages/64/c6/a5fb6bf91a36577e594753ebf97008c3536da9de0959e68343e7c5e33d5f/flair_brookslab-3.0.1.tar.gz"
 ARG FLAIR_SHA256="04554034b62f95a74b1f062d5c48d39fcb21ffd122085ed7ffddb6b13de60bcf"
+# Debian's minimap2 2.27 writes cs:Z instead of MD:Z for --MD, which FLAIR's transcriptome filter requires.
+ARG MINIMAP2_URL="https://github.com/lh3/minimap2/releases/download/v2.30/minimap2-2.30_x64-linux.tar.bz2"
+ARG MINIMAP2_SHA256="b4c0677f282f448dac7bc1cd2fe5a45d12cb07a8b1edc316a45a26bbf75b7f07"
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends bedtools build-essential ca-certificates curl minimap2 samtools zlib1g-dev \
+    && apt-get install -y --no-install-recommends bedtools build-essential bzip2 ca-certificates curl samtools zlib1g-dev \
     && rm -rf /var/lib/apt/lists/* \
+    && curl -fsSL "$MINIMAP2_URL" -o /tmp/minimap2.tar.bz2 \
+    && echo "$MINIMAP2_SHA256  /tmp/minimap2.tar.bz2" | sha256sum -c - \
+    && tar -xjf /tmp/minimap2.tar.bz2 -C /tmp \
+    && install -m 0755 /tmp/minimap2-2.30_x64-linux/minimap2 /usr/local/bin/minimap2 \
+    && rm -rf /tmp/minimap2.tar.bz2 /tmp/minimap2-2.30_x64-linux \
     && curl -fsSL "$FLAIR_URL" -o /tmp/flair.tar.gz \
     && echo "$FLAIR_SHA256  /tmp/flair.tar.gz" | sha256sum -c - \
     && pip install --no-cache-dir /tmp/flair.tar.gz \
     && rm /tmp/flair.tar.gz \
-    && apt-get purge -y --auto-remove build-essential zlib1g-dev
+    && apt-get purge -y --auto-remove build-essential bzip2 zlib1g-dev
 
 COPY verify.sh /tmp/verify.sh
 RUN bash /tmp/verify.sh && rm /tmp/verify.sh
