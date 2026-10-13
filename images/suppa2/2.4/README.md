@@ -13,3 +13,6 @@ docker run --rm -v "$PWD:/work" ghcr.io/yeolab/suppa2:2.4 \
 ```
 
 Arguments are passed directly to `suppa.py`.
+
+Under Singularity, call `suppa.py <subcommand>` with `singularity exec`, or
+`singularity run` with the subcommand as the first argument.

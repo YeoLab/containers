@@ -1,5 +1,5 @@
 diff --git a/cerberus/cerberus.py b/cerberus/cerberus.py
-index 35a87f3..ad34177 100644
+index 85a4260..ffde15a 100644
 --- a/cerberus/cerberus.py
 +++ b/cerberus/cerberus.py
 @@ -232,0 +233 @@ def number_gtf_ends(bed, gtf, mode):
@@ -23,3 +23,9 @@ index 35a87f3..ad34177 100644
 +    bed = pr.PyRanges(bed)
 @@ -1778,0 +1786 @@ def get_ics_from_gtf(gtf):
 +    df['Strand'] = df['Strand'].astype(str)
+@@ -2337,0 +2346,2 @@ def replace_gtf_ids(h5, gtf, source, update_ends, agg, o):
++    # a 'source' attribute (e.g. from TALON) would duplicate the Source column in to_gtf
++    df = df.drop('source', axis=1, errors='ignore')
+@@ -2362 +2372 @@ def replace_gtf_ids(h5, gtf, source, update_ends, agg, o):
+-    m_df.drop(['transcript_triplet', 'gene_id'], axis=1, inplace=True)
++    m_df.drop(['transcript_triplet', 'gene_id', 'source'], axis=1, inplace=True)

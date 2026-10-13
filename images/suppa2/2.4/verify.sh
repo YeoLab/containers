@@ -2,6 +2,8 @@
 set -euo pipefail
 
 test "$(python3 /opt/suppa/suppa.py --version)" = "SUPPA 2.4"
+# suppa.py has no shebang upstream; the PATH entry is a wrapper so `singularity exec ... suppa.py` works.
+test "$(suppa.py --version)" = "SUPPA 2.4"
 
 python3 - <<'PY'
 import matplotlib

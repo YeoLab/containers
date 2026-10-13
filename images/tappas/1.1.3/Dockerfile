@@ -35,6 +35,9 @@ RUN test "$(uname -m)" = "x86_64" \
     && mv /tmp/tappas-release/dist/linux/tappas /opt/tappas \
     && rm -rf /tmp/tappas.zip /tmp/tappas-release \
     && sed -i 's/java-options=-Xms8g/java-options=-Xms2g/' /opt/tappas/lib/app/tappas.cfg \
+    # The jar ships resource_v1.1.0.txt but the app extracts resource_v1.1.1.txt, so the
+    # first start fails with "Unable to extract application resource to files."
+    && python3 -c "import zipfile; zipfile.ZipFile('/opt/tappas/lib/app/tappas-jar-with-dependencies.jar', 'a').writestr('tappas/resources/resource_v1.1.1.txt', '')" \
     && ln -s /opt/tappas/bin/tappas /usr/local/bin/tappas \
     && ln -s /usr/local/bin/Rscript /usr/bin/Rscript \
     && printf '%s\n' '1.1.3' > /opt/tappas/VERSION
@@ -49,6 +52,7 @@ COPY verify.R /tmp/verify.R
 RUN Rscript /tmp/verify.R \
     && test "$(cat /opt/tappas/VERSION)" = "1.1.3" \
     && unzip -l /opt/tappas/lib/app/tappas-jar-with-dependencies.jar | grep -q 'tappas/Tappas.class' \
+    && unzip -l /opt/tappas/lib/app/tappas-jar-with-dependencies.jar | grep -q 'tappas/resources/resource_v1.1.1.txt' \
     && /opt/tappas/lib/runtime/bin/java -version \
     && rm /tmp/verify.R
 

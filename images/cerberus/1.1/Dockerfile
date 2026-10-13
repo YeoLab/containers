@@ -39,7 +39,8 @@ RUN apt-get update \
         "python-ternary==1.0.8" \
         "cython<3" \
     && pip install --no-cache-dir --no-build-isolation "sorted-nearest==0.0.33" \
-    && pip install --no-cache-dir "pyranges==0.1.4" \
+    # pyranges 0.1.x drops strand information that cerberus' end and annotation steps need
+    && pip install --no-cache-dir "pyranges==0.0.127" "pyrle==0.0.38" \
     && pip install --no-cache-dir /tmp/lapa.tar.gz \
     && pip install --no-cache-dir /tmp/swan.tar.gz \
     && rm -rf /tmp/lapa.tar.gz /tmp/swan.tar.gz \

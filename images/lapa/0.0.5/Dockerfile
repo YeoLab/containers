@@ -17,7 +17,10 @@ RUN apt-get update \
     && echo "$LAPA_SHA256  /tmp/lapa.tar.gz" | sha256sum -c - \
     && pip install --no-cache-dir "numpy==1.23.0" "cython<3" \
     && pip install --no-cache-dir --no-build-isolation "sorted-nearest==0.0.33" \
+    # LAPA 0.0.5 needs pyrle for coverage and predates the pyranges 0.0.12x/pandas 2
+    # strand handling and scipy 1.13's window changes.
     && pip install --no-cache-dir /tmp/lapa.tar.gz \
+        "pyrle==0.0.38" "pyranges==0.0.120" "pandas==1.5.3" "scipy==1.10.1" \
     && rm /tmp/lapa.tar.gz \
     && apt-get purge -y --auto-remove build-essential
 

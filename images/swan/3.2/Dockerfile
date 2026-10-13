@@ -19,6 +19,10 @@ RUN apt-get update \
     && echo "$SWAN_SHA256  /tmp/swan.tar.gz" | sha256sum -c - \
     && pip install --no-cache-dir "numpy==1.26.4" \
     && pip install --no-cache-dir /tmp/swan.tar.gz \
+    # swan draws straight edges with connectionstyle=None, which current matplotlib rejects;
+    # "arc3" (rad=0) is the same straight line.
+    && sed -i "s/'straight': None}/'straight': 'arc3'}/" /usr/local/lib/python3.10/site-packages/swan_vis/plottedgraph.py \
+    && grep -q "'straight': 'arc3'}" /usr/local/lib/python3.10/site-packages/swan_vis/plottedgraph.py \
     && rm /tmp/swan.tar.gz \
     && apt-get purge -y --auto-remove gcc g++
 
