@@ -23,7 +23,7 @@ RUN apt-get update \
     && cd /opt/Mandalorion \
     && curl -fsSL https://github.com/yangao07/abPOA/releases/download/v1.4.1/abPOA-v1.4.1.tar.gz -o /tmp/abpoa.tar.gz \
     && tar -xzf /tmp/abpoa.tar.gz \
-    && make -C abPOA-v1.4.1 -j2 \
+    && make -C abPOA-v1.4.1 -j2 sse2=1 \
     && python -m pip install --no-cache-dir 'numpy<2' mappy 'matplotlib<4' editdistance \
     && python Mando.py --version \
     && test -x minimap2/minimap2 \
