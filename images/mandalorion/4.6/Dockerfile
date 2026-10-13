@@ -11,7 +11,7 @@ ARG MANDALORION_COMMIT=9bcfb94497b0ba1d11ebbaacac2089fd18b5aebc
 ARG MINIMAP2_COMMIT=79c9cc186b95f50bd899f69b48eba995ced810c6
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential ca-certificates curl git zlib1g-dev \
+    && apt-get install -y --no-install-recommends build-essential ca-certificates curl git openssh-client zlib1g-dev \
     && rm -rf /var/lib/apt/lists/* \
     && git clone https://github.com/christopher-vollmers/Mandalorion.git /opt/Mandalorion \
     && cd /opt/Mandalorion \
@@ -28,6 +28,8 @@ RUN apt-get update \
     && python Mando.py --version \
     && test -x minimap2/minimap2 \
     && test -x abPOA-v1.4.1/bin/abpoa \
+    # Mando.py copies its final outputs out of <path>/tmp/ with scp.
+    && command -v scp \
     && rm /tmp/abpoa.tar.gz
 
 ENV PATH=/opt/Mandalorion:/opt/Mandalorion/minimap2:/opt/Mandalorion/abPOA-v1.4.1/bin:$PATH

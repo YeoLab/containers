@@ -4,6 +4,12 @@
 
 ### Fixed
 
+- Added `openssh-client` to the Mandalorion 4.6 image; `Mando.py` copies its
+  final isoform and quantification files out of `<path>/tmp/` with `scp`,
+  so without it the outputs never reached the output directory.
+- Patched Isosceles 0.2.1 to call `txdbmaker::makeTxDbFromGFF` (moved out of
+  GenomicFeatures in current Bioconductor); `prepare_transcripts()` failed
+  without it. The build now runs the bundled bulk RNA-seq example.
 - Replaced Debian's minimap2 2.27 package in the FLAIR 3.0.1 image with the
   official minimap2 2.30 release; the Debian build writes `cs:Z` instead of
   `MD:Z` for `--MD`, which made `flair transcriptome` fail with "Missing AS or
