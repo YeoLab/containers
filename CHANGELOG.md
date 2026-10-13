@@ -20,6 +20,8 @@
 
 ### Added
 
+- Versioned Mandalorion 4.6, ESPRESSO 1.6.0, and Isosceles 0.2.1 containers
+  with build-time installation checks and Singularity pull documentation.
 - Latest stable containers for the PacBio full-length isoform sequencing
   note's transcript-visualization and isoform-classification/quantification
   tools: Swan 3.2, ggtranscript 1.0.0, SQANTI3 6.0.2, TALON 6.0.1, Cerberus
