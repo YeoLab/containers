@@ -85,6 +85,9 @@ quantification tools are packaged as:
 | IsoQuant 4.0.0 | `ghcr.io/yeolab/isoquant:4.0.0` |
 | Bambu 3.14.0 | `ghcr.io/yeolab/bambu:3.14.0` |
 | Oarfish 0.10.3 | `ghcr.io/yeolab/oarfish:0.10.3` |
+| Mandalorion 4.6 | `ghcr.io/yeolab/mandalorion:4.6` |
+| ESPRESSO 1.6.0 | `ghcr.io/yeolab/espresso:1.6.0` |
+| Isosceles 0.2.1 | `ghcr.io/yeolab/isosceles:0.2.1` |
 
 Swan and the Python command-line tools use checksum-pinned release artifacts;
 ggtranscript is pinned to the current upstream commit because the project has
@@ -94,6 +97,12 @@ LongKmer binary. The per-image READMEs document entrypoints, architecture, and
 upstream version caveats. Build-time tests exercise transcript parsing,
 annotation conversion, database creation, indexing, or quantification as
 appropriate instead of checking only `--version` output.
+
+Mandalorion, ESPRESSO, and Isosceles are pinned to upstream release commits.
+Run Mandalorion through `/opt/Mandalorion/Mando.py`, ESPRESSO through the
+scripts in `/opt/espresso/src`, and Isosceles with `library(Isosceles)` in R.
+Each image can be pulled as a read-only `.sif` with `singularity pull` using
+the GHCR references above.
 
 ## Pulling a Singularity/Apptainer image from GHCR
 
