@@ -21,4 +21,9 @@ graph = swan.SwanGraph()
 graph.add_transcriptome(str(gtf))
 assert graph.t_df.shape[0] == 1
 assert graph.edge_df.shape[0] == 3
+
+# small genes are drawn with straight edges
+graph.plot_graph("g1")
+swan.save_fig("/tmp/swan-smoke.png")
+assert Path("/tmp/swan-smoke.png").stat().st_size > 0
 print("Swan 3.2 smoke test passed")

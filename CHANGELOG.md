@@ -4,6 +4,24 @@
 
 ### Fixed
 
+- Pinned LAPA 0.0.5 to pyrle 0.0.38, pyranges 0.0.120, pandas 1.5.3, and
+  scipy 1.10.1; `lapa` failed with "Using the coverage method requires that
+  pyrle is installed", then on lost strand information and gaussian windows
+  with newer versions. The build now checks those code paths.
+- Linked `libbz2.so.1` in the SQANTI3 6.0.2 image; its bundled
+  `gtfToGenePred` could not load, so `sqanti3_qc.py` failed at "GTF to
+  genePred conversion" for every input. The build now runs `gtfToGenePred`.
+- Pinned Cerberus 1.1 to pyranges 0.0.127 (with pyrle); pyranges 0.1.4 lost
+  strand information in `agg_ends` and `annotate_transcriptome`. Patched
+  `replace_gtf_ids` to drop `source` columns that duplicated the GTF source
+  field (10-column output, e.g. from TALON GTFs). The build now runs the full
+  reference, annotation, and `replace_gtf_ids` workflow.
+- Patched Swan 3.2 to draw straight edges with `"arc3"` instead of `None`,
+  which current matplotlib rejects; every graph plot failed. The build now
+  plots a gene.
+- Added the `resource_v1.1.1.txt` resource that the tappAS 1.1.3 application
+  expects to its jar (the release ships `resource_v1.1.0.txt`); the first
+  start failed with "Unable to extract application resource to files."
 - Added `openssh-client` to the Mandalorion 4.6 image; `Mando.py` copies its
   final isoform and quantification files out of `<path>/tmp/` with `scp`,
   so without it the outputs never reached the output directory.

@@ -21,6 +21,24 @@ with tempfile.TemporaryDirectory() as directory:
     assert len(parsed["chr1"]) == 1
     assert parsed["chr1"][0].junctions == [(50, 100)]
 
+    # sqanti3_qc.py converts every input GTF with the bundled gtfToGenePred
+    gtf = Path(directory) / "isoforms.gtf"
+    gtf.write_text(
+        'chr1\ttest\ttranscript\t1\t200\t.\t+\t.\tgene_id "gene1"; transcript_id "tx1";\n'
+        'chr1\ttest\texon\t1\t50\t.\t+\t.\tgene_id "gene1"; transcript_id "tx1";\n'
+        'chr1\ttest\texon\t101\t200\t.\t+\t.\tgene_id "gene1"; transcript_id "tx1";\n'
+    )
+    converted = Path(directory) / "converted.genePred"
+    subprocess.run(
+        [
+            "/usr/local/share/sqanti3-6.0.2-1/src/utilities/gtfToGenePred-linux-x86_64",
+            str(gtf),
+            str(converted),
+        ],
+        check=True,
+    )
+    assert converted.read_text().startswith("tx1\tchr1\t+\t0\t200")
+
 for executable in ("gffread", "gmap", "minimap2", "samtools", "STAR"):
     subprocess.run(["bash", "-c", f"command -v {executable}"], check=True)
 
