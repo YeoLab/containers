@@ -50,6 +50,9 @@
 
 ### Added
 
+- rbp-maps v1.1.0 image (`images/rbp-maps/v1.1.0/Dockerfile`), built from the
+  upstream release tag with Miniforge and the release's own `environment.yml`;
+  publishes `ghcr.io/yeolab/rbp-maps:v1.1.0`.
 - Versioned Mandalorion 4.6, ESPRESSO 1.6.0, and Isosceles 0.2.1 containers
   with build-time installation checks and Singularity pull documentation.
 - Latest stable containers for the PacBio full-length isoform sequencing
