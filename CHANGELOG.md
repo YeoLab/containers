@@ -4,6 +4,8 @@
 
 ### Fixed
 
+- Updated the Bento Tools 2.1.3 image to Pillow 13.0.0 to remediate
+  CVE-2026-112896 (GHSA-pchr-8j38-3x4p).
 - Pinned LAPA 0.0.5 to pyrle 0.0.38, pyranges 0.0.120, pandas 1.5.3, and
   scipy 1.10.1; `lapa` failed with "Using the coverage method requires that
   pyrle is installed", then on lost strand information and gaussian windows
