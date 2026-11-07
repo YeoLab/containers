@@ -52,6 +52,10 @@
 
 ### Added
 
+- Added apeglm 1.24.0 and ashr 2.2-63 (with emdbook, RcppNumerical,
+  RcppEigen) to the DESeq2 1.45 image (`images/deseq2/1.45`) for
+  `lfcShrink(type = "apeglm")` and `type = "ashr"`. Installed from
+  cloud.r-project.org; the build loads both packages.
 - rbp-maps v1.1.0 image (`images/rbp-maps/v1.1.0/Dockerfile`), built from the
   upstream release tag with Miniforge and the release's own `environment.yml`;
   publishes `ghcr.io/yeolab/rbp-maps:v1.1.0`.

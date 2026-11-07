@@ -34,5 +34,10 @@ RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-projec
 RUN Rscript -e 'install.packages("devtools", repos = "https://cran.us.r-project.org")'
 # RUN Rscript -e 'install.packages("RCurl", repos = "https://cran.us.r-project.org")'
 RUN Rscript -e 'devtools::install_github("mikelove/deseq2", ref = "6e1a3a56f7f6315e4a5ff352a203af26e778f73a")'
+# LFC shrinkage: lfcShrink(type = "apeglm" / "ashr")
+RUN Rscript -e 'install.packages(c("emdbook", "RcppNumerical", "RcppEigen"), repos = "https://cloud.r-project.org")'
+RUN Rscript -e 'devtools::install_version("ashr", version = "2.2-63", repos = "https://cloud.r-project.org", upgrade = "never")'
+RUN Rscript -e 'install.packages("https://bioconductor.org/packages/3.18/bioc/src/contrib/apeglm_1.24.0.tar.gz", repos = NULL, type = "source")'
+RUN Rscript -e 'library(apeglm); library(ashr)'
 RUN Rscript -e 'IRkernel::installspec(name = "deseq2_1.42", displayname = "DESeq2-1.42", user = FALSE)'
 #USER $NB_UID
