@@ -56,6 +56,8 @@
   RcppEigen) to the DESeq2 1.45 image (`images/deseq2/1.45`) for
   `lfcShrink(type = "apeglm")` and `type = "ashr"`. Installed from
   cloud.r-project.org; the build loads both packages.
+- Added EnhancedVolcano 1.20.0 (with ggrepel) to the DESeq2 1.45 image for
+  volcano plots; the build loads it.
 - rbp-maps v1.1.0 image (`images/rbp-maps/v1.1.0/Dockerfile`), built from the
   upstream release tag with Miniforge and the release's own `environment.yml`;
   publishes `ghcr.io/yeolab/rbp-maps:v1.1.0`.

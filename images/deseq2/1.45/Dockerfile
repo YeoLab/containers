@@ -38,6 +38,8 @@ RUN Rscript -e 'devtools::install_github("mikelove/deseq2", ref = "6e1a3a56f7f63
 RUN Rscript -e 'install.packages(c("emdbook", "RcppNumerical", "RcppEigen"), repos = "https://cloud.r-project.org")'
 RUN Rscript -e 'devtools::install_version("ashr", version = "2.2-63", repos = "https://cloud.r-project.org", upgrade = "never")'
 RUN Rscript -e 'install.packages("https://bioconductor.org/packages/3.18/bioc/src/contrib/apeglm_1.24.0.tar.gz", repos = NULL, type = "source")'
-RUN Rscript -e 'library(apeglm); library(ashr)'
+RUN Rscript -e 'install.packages("ggrepel", repos = "https://cloud.r-project.org")'
+RUN Rscript -e 'install.packages("https://bioconductor.org/packages/3.18/bioc/src/contrib/EnhancedVolcano_1.20.0.tar.gz", repos = NULL, type = "source")'
+RUN Rscript -e 'library(apeglm); library(ashr); library(EnhancedVolcano)'
 RUN Rscript -e 'IRkernel::installspec(name = "deseq2_1.42", displayname = "DESeq2-1.42", user = FALSE)'
 #USER $NB_UID
