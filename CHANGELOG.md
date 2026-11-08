@@ -4,6 +4,14 @@
 
 ### Fixed
 
+- The DESeq2 1.45 image (`images/deseq2/1.45`) no longer builds from
+  `jupyter/datascience-notebook:hub-2.2.2`: the conda C++ compiler cannot build
+  BiocParallel, so DESeq2, DEXSeq and tximeta silently failed to install
+  (`install.packages()` only warns), and the `deseq2:1.45` image published by
+  PR #27 has no DESeq2. The image now starts from the original published build
+  (`brianyee/deseq2:1.44`, pinned by digest) and adds apeglm, ashr and
+  EnhancedVolcano; the build fails if DESeq2, tximport, apeglm, ashr or
+  EnhancedVolcano cannot be loaded.
 - Updated the Bento Tools 2.1.3 image to Pillow 13.0.0 to remediate
   CVE-2026-112896 (GHSA-pchr-8j38-3x4p).
 - Pinned LAPA 0.0.5 to pyrle 0.0.38, pyranges 0.0.120, pandas 1.5.3, and

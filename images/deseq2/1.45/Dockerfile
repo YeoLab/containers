@@ -1,11 +1,15 @@
 ################## BASE IMAGE ######################
 
-FROM jupyter/datascience-notebook:hub-2.2.2
+# Built on the published 1.45 image (pushed to Docker Hub as brianyee/deseq2:1.44, 2024-07-26).
+# Rebuilding the original recipe from jupyter/datascience-notebook:hub-2.2.2 no longer works:
+# the conda C++ compiler cannot build BiocParallel, so DESeq2 and its dependents fail to install.
+# The original recipe is in git history (commit 9fb3e66).
+FROM brianyee/deseq2:1.44@sha256:4fbae75ccd105740124128564d9b5b553a968c171ec7b7ebaa6f0188ff2c7e08
 
 ################## METADATA ######################
 
-LABEL base_image="jupyter/datascience-notebook:hub-2.2.2"
-LABEL version="1"
+LABEL base_image="brianyee/deseq2:1.44@sha256:4fbae75ccd105740124128564d9b5b553a968c171ec7b7ebaa6f0188ff2c7e08"
+LABEL version="2"
 LABEL software="deseq2"
 LABEL software.version="1.45.0"
 LABEL about.summary="Differential gene expression analysis based on the negative binomial distribution"
@@ -16,30 +20,12 @@ LABEL about.tags="Genomics"
 
 USER root
 
-COPY apt-packages.txt /tmp/apt-packages.txt
-# COPY conda-packages.txt /tmp/conda-packages.txt
-
-# Update image, install additional distro packages
-RUN apt-get update && xargs apt-get install -y < /tmp/apt-packages.txt
-
-# Install additional R packages from conda-forge using mamba
-# RUN mamba install -y -c bioconda -c conda-forge --file /tmp/conda-packages.txt
-RUN mamba install -y -c bioconda -c conda-forge r-curl r-reticulate r-units r-gmp r-sf
-RUN mamba install -y -c bioconda -c conda-forge r-v8 r-ggplot2 r-dplyr r-patchwork r-cowplot r-scales
-RUN mamba install -y -c bioconda -c conda-forge r-reshape2 r-future r-readr r-rcolorbrewer r-pheatmap r-plotly r-ggfortify
-RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org");BiocManager::install(c("tximportData", "tximeta", "tximport"))'
-# RUN mamba install -y -c bioconda -c conda-forge -c r bioconductor-tximport bioconductor-tximportdata=1.30 bioconductor-tximeta
-RUN Rscript -e 'install.packages("BiocManager", repos = "http://cran.us.r-project.org");BiocManager::install(c("BiocParallel", "IHW", "vsn", "pasilla", "DEXSeq", "airway"))'
-# RUN mamba install -y -c bioconda -c conda-forge bioconductor-airway bioconductor-biocparallel bioconductor-ihw bioconductor-vsn bioconductor-pasilla bioconductor-dexseq
-RUN Rscript -e 'install.packages("devtools", repos = "https://cran.us.r-project.org")'
-# RUN Rscript -e 'install.packages("RCurl", repos = "https://cran.us.r-project.org")'
-RUN Rscript -e 'devtools::install_github("mikelove/deseq2", ref = "6e1a3a56f7f6315e4a5ff352a203af26e778f73a")'
 # LFC shrinkage: lfcShrink(type = "apeglm" / "ashr")
 RUN Rscript -e 'install.packages(c("emdbook", "RcppNumerical", "RcppEigen"), repos = "https://cloud.r-project.org")'
 RUN Rscript -e 'devtools::install_version("ashr", version = "2.2-63", repos = "https://cloud.r-project.org", upgrade = "never")'
 RUN Rscript -e 'install.packages("https://bioconductor.org/packages/3.18/bioc/src/contrib/apeglm_1.24.0.tar.gz", repos = NULL, type = "source")'
 RUN Rscript -e 'install.packages("ggrepel", repos = "https://cloud.r-project.org")'
 RUN Rscript -e 'install.packages("https://bioconductor.org/packages/3.18/bioc/src/contrib/EnhancedVolcano_1.20.0.tar.gz", repos = NULL, type = "source")'
-RUN Rscript -e 'library(apeglm); library(ashr); library(EnhancedVolcano)'
-RUN Rscript -e 'IRkernel::installspec(name = "deseq2_1.42", displayname = "DESeq2-1.42", user = FALSE)'
+# install.packages() only warns on failure: fail the build if any package is missing
+RUN Rscript -e 'library(DESeq2); library(tximport); library(apeglm); library(ashr); library(EnhancedVolcano)'
 #USER $NB_UID
