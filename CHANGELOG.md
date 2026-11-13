@@ -14,6 +14,15 @@
   EnhancedVolcano cannot be loaded.
 - Updated the Bento Tools 2.1.3 image to Pillow 13.0.0 to remediate
   CVE-2026-112896 (GHSA-pchr-8j38-3x4p).
+- Updated 15 packages in the Bento Tools 2.1.3 image to clear their
+  Dependabot alerts: aiohttp 3.14.4, certifi 2026.10.18, cryptography 50.0.0,
+  fonttools 4.60.2, geopandas 1.1.2, idna 3.15, Jinja2 3.1.6, lxml 6.1.0,
+  msgpack 1.2.3, paramiko 5.0.0, Pygments 2.20.0, PyNaCl 1.6.2,
+  requests 2.33.0, soupsieve 4.0.0 and sqlparse 0.6.0 (with the aiohttp
+  dependencies yarl, multidict, frozenlist, aiosignal and aiohappyeyeballs).
+  pyarrow, distributed, fsspec and urllib3 stay on their old versions: RAPIDS
+  24.8 pins pyarrow 16.1 and distributed 2024.7.1, and spatialdata 0.2.3 caps
+  fsspec at 2023.6, which holds s3fs, botocore and urllib3 back.
 - Pinned LAPA 0.0.5 to pyrle 0.0.38, pyranges 0.0.120, pandas 1.5.3, and
   scipy 1.10.1; `lapa` failed with "Using the coverage method requires that
   pyrle is installed", then on lost strand information and gaussian windows
